@@ -10,10 +10,9 @@
       font-family: 'Inter', sans-serif;
       background: radial-gradient(circle at top, #1a0000, #000000 70%);
       color: #f8fafc;
-      line-height: 1.6;
+      line-height: 1.7;
     }
 
-    /* NAVBAR */
     nav {
       position: fixed;
       width: 100%;
@@ -21,7 +20,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 18px 50px;
-      background: rgba(0,0,0,0.85);
+      background: rgba(0,0,0,0.9);
       backdrop-filter: blur(12px);
       z-index: 1000;
     }
@@ -29,7 +28,6 @@
     .logo {
       font-size: 26px;
       font-weight: 800;
-      letter-spacing: 1px;
       background: linear-gradient(45deg, #ff0000, #ff6666);
       -webkit-background-clip: text;
       color: transparent;
@@ -39,7 +37,6 @@
       padding: 10px 16px;
       margin: 0 8px;
       border-radius: 25px;
-      cursor: pointer;
       font-size: 15px;
       color: #e5e7eb;
       text-decoration: none;
@@ -51,42 +48,40 @@
       color: #fff;
     }
 
-    /* SECTIONS */
     section {
       padding: 140px 60px;
-      max-width: 1000px;
+      max-width: 1050px;
       margin: auto;
       position: relative;
     }
 
     h1 {
-      font-size: 42px;
+      font-size: 44px;
       margin-bottom: 20px;
       font-weight: 700;
     }
 
     p {
-      font-size: 17px;
+      font-size: 17.5px;
       color: #d1d5db;
+      margin-bottom: 18px;
     }
 
-    /* GLASS CARD */
     .glass {
       background: rgba(255,0,0,0.06);
       border-radius: 18px;
-      padding: 30px;
+      padding: 32px;
       backdrop-filter: blur(18px);
       box-shadow: 0 15px 40px rgba(255,0,0,0.25);
-      margin-top: 25px;
       border: 1px solid rgba(255,0,0,0.15);
+      margin-top: 25px;
     }
 
     ul li {
-      margin: 10px 0;
-      font-size: 16px;
+      margin: 12px 0;
+      font-size: 16.5px;
     }
 
-    /* BUTTON */
     button {
       padding: 14px 22px;
       border: none;
@@ -105,7 +100,6 @@
       box-shadow: 0 0 20px rgba(255,0,0,0.5);
     }
 
-    /* INPUT */
     input {
       width: 100%;
       padding: 12px;
@@ -117,24 +111,23 @@
       font-size: 15px;
     }
 
-    /* 🔴 TOP RIGHT IMAGE FIX */
+    /* HERO IMAGE */
     .hero-image {
       position: absolute;
-      top: 120px;
+      top: 130px;
       right: 60px;
-      width: 280px;
+      width: 300px;
       opacity: 0.9;
-      filter: drop-shadow(0 0 25px rgba(255,0,0,0.5));
+      filter: drop-shadow(0 0 30px rgba(255,0,0,0.6));
     }
 
-    /* RESPONSIVE */
     @media(max-width: 900px) {
       .hero-image {
         display: none;
       }
 
       section {
-        padding: 120px 30px;
+        padding: 120px 25px;
       }
 
       h1 {
@@ -159,51 +152,81 @@
 
 <!-- HOME -->
 <section id="home">
-  <h1>Reimagining Creator Payments</h1>
+  <h1>Fixing How Creators Get Paid</h1>
 
-  <!-- 🔴 TOP RIGHT IMAGE -->
   <img src="your-image.png" class="hero-image">
 
   <div class="glass">
     <p>
-      CRE8 is a blockchain-based system designed to automate revenue distribution in the creator economy.
-      It eliminates delays, removes intermediaries, and ensures instant, trustless payouts.
+      CRE8 is a decentralized payment protocol designed to fix one of the most broken systems on the internet: how creators get paid.
+      Today, creators generate billions in value, yet they don’t control how or when they get paid. Platforms act as intermediaries,
+      taking a significant cut while delaying payouts by weeks or even months.
     </p>
+
+    <p>
+      CRE8 replaces this with programmable, instant payments. Using smart contracts, revenue is automatically split and distributed
+      the moment a transaction occurs—no intermediaries, no delays, no ambiguity.
+    </p>
+
+    <p>
+      We’re not building another creator platform. We’re building the financial infrastructure that powers the next generation of them.
+    </p>
+
     <button onclick="window.location='#demo'">Try Live Demo</button>
   </div>
 </section>
 
 <!-- PURPOSE -->
 <section id="purpose">
-  <h1>Purpose</h1>
+  <h1>Why CRE8 Exists</h1>
+
   <div class="glass">
     <p>
-      CRE8 introduces a decentralized financial layer for creators by leveraging blockchain-based automation.
+      The creator economy is growing exponentially, yet its financial infrastructure remains outdated and centralized.
+      Creators still rely on platforms that control monetization, enforce delayed payout cycles, and lack transparency.
+    </p>
+
+    <p>
+      Even in Web3, most solutions focus on ownership while ignoring payment execution. Revenue distribution remains manual,
+      inefficient, and prone to disputes.
+    </p>
+
+    <p>
+      CRE8 introduces a decentralized payment layer that automates revenue sharing at the protocol level.
+      Funds are distributed instantly and transparently based on predefined logic.
     </p>
 
     <ul>
-      <li>🚀 Eliminate intermediaries</li>
+      <li>🚀 No intermediaries</li>
       <li>⚡ Instant payments</li>
-      <li>🔐 Trustless smart contracts</li>
-      <li>📊 Transparent revenue sharing</li>
+      <li>🔐 Trustless execution</li>
+      <li>📊 Transparent revenue flow</li>
     </ul>
   </div>
 </section>
 
 <!-- ABOUT -->
 <section id="about">
-  <h1>About CRE8</h1>
+  <h1>How It Works</h1>
+
   <div class="glass">
     <p>
-      Built on Polygon using Solidity smart contracts, CRE8 enables automated revenue splitting (80/20 model).
+      CRE8 is built on Polygon using Solidity smart contracts that automate revenue distribution.
+      Payments are split and executed automatically at the transaction level, eliminating manual intervention.
     </p>
 
     <p>
-      Unlike Web2 platforms, payments are executed instantly via smart contracts — no delays, no manual distribution.
+      The current implementation supports automated revenue sharing between a creator and collaborator,
+      with extensibility for multi-party distribution and dynamic percentages.
     </p>
 
     <p>
-      Integrated with MetaMask and powered by Ethers.js for seamless blockchain interaction.
+      Integrated with MetaMask and powered by Ethers.js, CRE8 ensures seamless blockchain interaction
+      while maintaining a simple and intuitive user experience.
+    </p>
+
+    <p>
+      Unlike traditional systems, CRE8 focuses on cash flow execution—ensuring money moves instantly and fairly.
     </p>
   </div>
 </section>
@@ -213,6 +236,11 @@
   <h1>Live Demo</h1>
 
   <div class="glass">
+    <p>
+      Experience real-time, automated revenue distribution. Connect your wallet, enter addresses,
+      and execute payments that are instantly split via smart contracts.
+    </p>
+
     <button onclick="connect()">Connect Wallet</button>
     <p id="wallet"></p>
 
@@ -246,7 +274,6 @@ async function connect() {
     document.getElementById("wallet").innerText = "Connected: " + address;
 
   } catch (err) {
-    console.error(err);
     alert("Connection failed");
   }
 }
@@ -282,7 +309,6 @@ async function send() {
     document.getElementById("txlink").innerText = "View Transaction";
 
   } catch (err) {
-    console.error(err);
     document.getElementById("status").innerText = "Transaction failed";
   }
 }
