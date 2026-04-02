@@ -7,37 +7,38 @@
   <style>
     body {
       margin: 0;
-      font-family: 'Orbitron', sans-serif;
-      background: radial-gradient(circle at top, #020617, #000000);
-      color: #00f0ff;
+      font-family: 'Courier New', monospace;
+      background: black;
+      color: #00ffcc;
+      overflow: hidden;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      z-index: -1;
     }
 
     nav {
       display: flex;
       justify-content: space-between;
-      padding: 20px 40px;
-      border-bottom: 1px solid #00f0ff33;
+      padding: 20px;
+      border-bottom: 1px solid #00ffcc33;
     }
 
     .logo {
       font-size: 24px;
-      color: #00f0ff;
-      text-shadow: 0 0 10px #00f0ff;
+      text-shadow: 0 0 10px #00ffcc;
     }
 
     nav a {
-      margin: 0 15px;
+      margin: 0 10px;
       cursor: pointer;
-      color: #00f0ff;
-    }
-
-    nav a:hover {
-      text-shadow: 0 0 10px #00f0ff;
     }
 
     section {
       display: none;
-      padding: 80px;
+      padding: 60px;
       text-align: center;
     }
 
@@ -46,73 +47,55 @@
     }
 
     h1 {
-      font-size: 50px;
-      text-shadow: 0 0 20px #00f0ff;
+      font-size: 45px;
+      text-shadow: 0 0 20px #00ffcc;
     }
 
     .glass {
-      background: rgba(0, 255, 255, 0.05);
-      border: 1px solid #00f0ff33;
-      border-radius: 15px;
+      border: 1px solid #00ffcc33;
       padding: 30px;
       display: inline-block;
-      box-shadow: 0 0 30px #00f0ff22;
+      backdrop-filter: blur(5px);
     }
 
     button {
-      padding: 12px 25px;
+      padding: 10px 20px;
+      border: 1px solid #00ffcc;
       background: transparent;
-      border: 1px solid #00f0ff;
-      color: #00f0ff;
-      border-radius: 10px;
+      color: #00ffcc;
       cursor: pointer;
-      transition: 0.3s;
+      margin-top: 10px;
     }
 
     button:hover {
-      background: #00f0ff;
+      background: #00ffcc;
       color: black;
-      box-shadow: 0 0 20px #00f0ff;
     }
 
     input {
+      display: block;
+      margin: 10px auto;
       padding: 10px;
-      margin: 10px;
       width: 250px;
       background: black;
-      border: 1px solid #00f0ff;
-      color: #00f0ff;
+      border: 1px solid #00ffcc;
+      color: #00ffcc;
     }
 
-    #loader {
-      display: none;
-      margin-top: 20px;
+    #status {
+      margin-top: 15px;
     }
 
-    .spinner {
-      border: 4px solid #00f0ff33;
-      border-top: 4px solid #00f0ff;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      animation: spin 1s linear infinite;
-      margin: auto;
+    #txlink {
+      color: #00ffcc;
+      text-decoration: underline;
     }
-
-    @keyframes spin {
-      100% { transform: rotate(360deg); }
-    }
-
-    #success {
-      display: none;
-      margin-top: 20px;
-      color: #00ff88;
-    }
-
   </style>
 </head>
 
 <body>
+
+<canvas id="matrix"></canvas>
 
 <nav>
   <div class="logo">CRE8</div>
@@ -124,47 +107,38 @@
 </nav>
 
 <section id="home" class="active">
-  <h1>FUTURE OF CREATOR PAYMENTS</h1>
-  <p>Automated. Trustless. Instant.</p>
-  <button onclick="show('demo')">Launch Demo</button>
+  <h1>CREATOR ECONOMY PROTOCOL</h1>
+  <p>Automated payment splitting on blockchain</p>
+  <button onclick="show('demo')">Enter System</button>
 </section>
 
 <section id="about">
   <div class="glass">
-    <h2>About CRE8</h2>
-    <p>
-      CRE8 eliminates manual payouts in the creator economy using blockchain.
-      Smart contracts split payments instantly between collaborators.
-    </p>
+    <h2>System Overview</h2>
+    <p>CRE8 enables trustless revenue distribution using smart contracts.</p>
   </div>
 </section>
 
 <section id="demo">
   <div class="glass">
-    <h2>Live Payment Engine</h2>
+    <h2>Payment Engine</h2>
 
-    <button onclick="connect()">Connect Wallet</button><br><br>
+    <button onclick="connect()">Connect Wallet</button>
+    <p id="wallet"></p>
 
-    <input id="creator" placeholder="Creator Address"><br>
-    <input id="collab" placeholder="Collaborator Address"><br>
-    <input id="amount" placeholder="Amount (POL)"><br>
+    <input id="creator" placeholder="Creator Address">
+    <input id="collab" placeholder="Collaborator Address">
+    <input id="amount" placeholder="Amount (POL)">
 
     <button onclick="send()">Execute Split</button>
 
-    <div id="loader">
-      <div class="spinner"></div>
-      <p>Processing transaction...</p>
-    </div>
-
-    <div id="success">
-      ✅ Payment Successfully Split!
-    </div>
+    <div id="status"></div>
+    <a id="txlink" target="_blank"></a>
 
   </div>
 </section>
 
 <script>
-
 function show(id) {
   document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
   document.getElementById(id).classList.add("active");
@@ -175,10 +149,11 @@ let signer;
 async function connect() {
   const provider = new ethers.BrowserProvider(window.ethereum);
   signer = await provider.getSigner();
-  alert("Wallet Connected");
+  const address = await signer.getAddress();
+  document.getElementById("wallet").innerText = "Connected: " + address;
 }
 
-const contractAddress = "0x23a88bf4a77cf2d78427117238488d824de3804b";
+const contractAddress = "PASTE_YOUR_CONTRACT_ADDRESS";
 
 const abi = [
   "function distribute(address,address) payable"
@@ -186,8 +161,7 @@ const abi = [
 
 async function send() {
 
-  document.getElementById("loader").style.display = "block";
-  document.getElementById("success").style.display = "none";
+  document.getElementById("status").innerText = "Processing...";
 
   const creator = document.getElementById("creator").value;
   const collab = document.getElementById("collab").value;
@@ -201,12 +175,54 @@ async function send() {
     { value: ethers.parseEther(amount) }
   );
 
+  document.getElementById("status").innerText = "Transaction sent...";
+
   await tx.wait();
 
-  document.getElementById("loader").style.display = "none";
-  document.getElementById("success").style.display = "block";
+  document.getElementById("status").innerText = "Success!";
+  document.getElementById("txlink").href =
+    "https://amoy.polygonscan.com/tx/" + tx.hash;
+
+  document.getElementById("txlink").innerText = "View Transaction";
+}
+</script>
+
+<script>
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+
+let letters = "01";
+letters = letters.split("");
+
+let fontSize = 14;
+let columns = canvas.width / fontSize;
+
+let drops = [];
+for (let x = 0; x < columns; x++)
+  drops[x] = 1;
+
+function draw() {
+  ctx.fillStyle = "rgba(0,0,0,0.05)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  ctx.fillStyle = "#00ffcc";
+  ctx.font = fontSize + "px monospace";
+
+  for (let i = 0; i < drops.length; i++) {
+    let text = letters[Math.floor(Math.random() * letters.length)];
+    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975)
+      drops[i] = 0;
+
+    drops[i]++;
+  }
 }
 
+setInterval(draw, 33);
 </script>
 
 </body>
