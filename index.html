@@ -7,117 +7,108 @@
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #0f172a, #1e3a8a, #9333ea);
-      color: white;
-      overflow-x: hidden;
+      font-family: 'Orbitron', sans-serif;
+      background: radial-gradient(circle at top, #020617, #000000);
+      color: #00f0ff;
     }
 
     nav {
       display: flex;
       justify-content: space-between;
       padding: 20px 40px;
-      backdrop-filter: blur(12px);
-      animation: fadeDown 1s ease;
+      border-bottom: 1px solid #00f0ff33;
     }
 
     .logo {
       font-size: 24px;
-      font-weight: bold;
-      background: linear-gradient(45deg, #c084fc, #60a5fa);
-      -webkit-background-clip: text;
-      color: transparent;
+      color: #00f0ff;
+      text-shadow: 0 0 10px #00f0ff;
     }
 
     nav a {
       margin: 0 15px;
       cursor: pointer;
-      transition: 0.3s;
+      color: #00f0ff;
     }
 
     nav a:hover {
-      color: #a5b4fc;
+      text-shadow: 0 0 10px #00f0ff;
     }
 
     section {
-      padding: 80px 40px;
       display: none;
-      animation: fadeIn 1s ease;
+      padding: 80px;
+      text-align: center;
     }
 
     .active {
       display: block;
     }
 
-    .hero {
-      text-align: center;
-      margin-top: 50px;
-      animation: fadeUp 1.5s ease;
-    }
-
-    .hero h1 {
+    h1 {
       font-size: 50px;
-      background: linear-gradient(45deg, #c084fc, #60a5fa);
-      -webkit-background-clip: text;
-      color: transparent;
+      text-shadow: 0 0 20px #00f0ff;
     }
 
     .glass {
-      background: rgba(255,255,255,0.08);
-      border-radius: 16px;
+      background: rgba(0, 255, 255, 0.05);
+      border: 1px solid #00f0ff33;
+      border-radius: 15px;
       padding: 30px;
-      backdrop-filter: blur(20px);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-      margin-top: 30px;
-      max-width: 600px;
-      animation: fadeUp 1.2s ease;
+      display: inline-block;
+      box-shadow: 0 0 30px #00f0ff22;
     }
 
     button {
       padding: 12px 25px;
-      border: none;
+      background: transparent;
+      border: 1px solid #00f0ff;
+      color: #00f0ff;
       border-radius: 10px;
-      background: linear-gradient(45deg, #6366f1, #9333ea);
-      color: white;
       cursor: pointer;
       transition: 0.3s;
     }
 
     button:hover {
-      transform: scale(1.08);
-      box-shadow: 0 0 20px rgba(147,51,234,0.6);
+      background: #00f0ff;
+      color: black;
+      box-shadow: 0 0 20px #00f0ff;
     }
 
     input {
-      width: 90%;
-      padding: 12px;
-      margin: 10px 0;
-      border-radius: 8px;
-      border: none;
-      outline: none;
+      padding: 10px;
+      margin: 10px;
+      width: 250px;
+      background: black;
+      border: 1px solid #00f0ff;
+      color: #00f0ff;
     }
 
-    .center {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
+    #loader {
+      display: none;
+      margin-top: 20px;
     }
 
-    @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
+    .spinner {
+      border: 4px solid #00f0ff33;
+      border-top: 4px solid #00f0ff;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: auto;
     }
 
-    @keyframes fadeUp {
-      from {opacity: 0; transform: translateY(30px);}
-      to {opacity: 1; transform: translateY(0);}
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
     }
 
-    @keyframes fadeDown {
-      from {opacity: 0; transform: translateY(-30px);}
-      to {opacity: 1; transform: translateY(0);}
+    #success {
+      display: none;
+      margin-top: 20px;
+      color: #00ff88;
     }
+
   </style>
 </head>
 
@@ -128,54 +119,47 @@
   <div>
     <a onclick="show('home')">Home</a>
     <a onclick="show('about')">About</a>
-    <a onclick="show('how')">How</a>
     <a onclick="show('demo')">Demo</a>
   </div>
 </nav>
 
-<!-- HOME -->
-<section id="home" class="active center">
-  <div class="hero">
-    <h1>Automate Creator Payments</h1>
-    <p>No delays. No trust issues. Just blockchain.</p>
-    <button onclick="show('demo')">Try Demo</button>
-  </div>
+<section id="home" class="active">
+  <h1>FUTURE OF CREATOR PAYMENTS</h1>
+  <p>Automated. Trustless. Instant.</p>
+  <button onclick="show('demo')">Launch Demo</button>
 </section>
 
-<!-- ABOUT -->
-<section id="about" class="center">
+<section id="about">
   <div class="glass">
     <h2>About CRE8</h2>
     <p>
-      CRE8 is a decentralized payment system designed for the creator economy.
-      It removes manual payouts and automates revenue splitting using smart contracts.
+      CRE8 eliminates manual payouts in the creator economy using blockchain.
+      Smart contracts split payments instantly between collaborators.
     </p>
   </div>
 </section>
 
-<!-- HOW -->
-<section id="how" class="center">
+<section id="demo">
   <div class="glass">
-    <h2>How It Works</h2>
-    <p>1. Connect wallet</p>
-    <p>2. Enter addresses</p>
-    <p>3. Send payment</p>
-    <p>4. Auto split (80/20)</p>
-  </div>
-</section>
-
-<!-- DEMO -->
-<section id="demo" class="center">
-  <div class="glass">
-    <h2>Live Demo</h2>
+    <h2>Live Payment Engine</h2>
 
     <button onclick="connect()">Connect Wallet</button><br><br>
 
-    <input id="creator" placeholder="Creator Address">
-    <input id="collab" placeholder="Collaborator Address">
-    <input id="amount" placeholder="Amount (POL)">
+    <input id="creator" placeholder="Creator Address"><br>
+    <input id="collab" placeholder="Collaborator Address"><br>
+    <input id="amount" placeholder="Amount (POL)"><br>
 
-    <button onclick="send()">Send Payment</button>
+    <button onclick="send()">Execute Split</button>
+
+    <div id="loader">
+      <div class="spinner"></div>
+      <p>Processing transaction...</p>
+    </div>
+
+    <div id="success">
+      ✅ Payment Successfully Split!
+    </div>
+
   </div>
 </section>
 
@@ -201,6 +185,10 @@ const abi = [
 ];
 
 async function send() {
+
+  document.getElementById("loader").style.display = "block";
+  document.getElementById("success").style.display = "none";
+
   const creator = document.getElementById("creator").value;
   const collab = document.getElementById("collab").value;
   const amount = document.getElementById("amount").value;
@@ -215,7 +203,8 @@ async function send() {
 
   await tx.wait();
 
-  alert("Payment Sent Successfully!");
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("success").style.display = "block";
 }
 
 </script>
