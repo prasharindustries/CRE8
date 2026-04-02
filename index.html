@@ -7,160 +7,195 @@
   <style>
     body {
       margin: 0;
-      font-family: 'Courier New', monospace;
-      background: black;
-      color: #00ffcc;
-      overflow: hidden;
-    }
-
-    canvas {
-      position: fixed;
-      top: 0;
-      z-index: -1;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #e0e7ff, #f5f3ff, #eef2ff);
+      color: #0f172a;
     }
 
     nav {
+      position: fixed;
+      width: 100%;
       display: flex;
       justify-content: space-between;
-      padding: 20px;
-      border-bottom: 1px solid #00ffcc33;
+      padding: 15px 40px;
+      backdrop-filter: blur(12px);
+      background: rgba(255,255,255,0.6);
+      z-index: 1000;
     }
 
     .logo {
-      font-size: 24px;
-      text-shadow: 0 0 10px #00ffcc;
+      font-size: 22px;
+      font-weight: bold;
+      background: linear-gradient(45deg, #6366f1, #9333ea);
+      -webkit-background-clip: text;
+      color: transparent;
     }
 
-    nav a {
-      margin: 0 10px;
+    .nav-links a {
+      padding: 8px 14px;
+      margin: 0 5px;
+      border-radius: 20px;
       cursor: pointer;
+      transition: 0.3s;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      background: rgba(99,102,241,0.2);
     }
 
     section {
-      display: none;
-      padding: 60px;
-      text-align: center;
-    }
-
-    .active {
-      display: block;
+      padding: 110px 60px;
+      max-width: 900px;
+      margin: auto;
     }
 
     h1 {
-      font-size: 45px;
-      text-shadow: 0 0 20px #00ffcc;
+      font-size: 40px;
+      margin-bottom: 20px;
     }
 
     .glass {
-      border: 1px solid #00ffcc33;
-      padding: 30px;
-      display: inline-block;
-      backdrop-filter: blur(5px);
+      background: rgba(255,255,255,0.6);
+      border-radius: 16px;
+      padding: 25px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      margin-top: 20px;
     }
 
     button {
-      padding: 10px 20px;
-      border: 1px solid #00ffcc;
-      background: transparent;
-      color: #00ffcc;
+      padding: 12px 18px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(45deg, #6366f1, #9333ea);
+      color: white;
       cursor: pointer;
-      margin-top: 10px;
+      transition: 0.3s;
     }
 
     button:hover {
-      background: #00ffcc;
-      color: black;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(99,102,241,0.4);
     }
 
     input {
-      display: block;
-      margin: 10px auto;
+      width: 100%;
       padding: 10px;
-      width: 250px;
-      background: black;
-      border: 1px solid #00ffcc;
-      color: #00ffcc;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: none;
+      background: rgba(255,255,255,0.8);
     }
 
-    #status {
-      margin-top: 15px;
+    a {
+      text-decoration: none;
+      color: inherit;
     }
 
-    #txlink {
-      color: #00ffcc;
-      text-decoration: underline;
-    }
   </style>
 </head>
 
 <body>
 
-<canvas id="matrix"></canvas>
-
 <nav>
   <div class="logo">CRE8</div>
-  <div>
-    <a onclick="show('home')">Home</a>
-    <a onclick="show('about')">About</a>
-    <a onclick="show('demo')">Demo</a>
+  <div class="nav-links">
+    <a href="#home">Home</a>
+    <a href="#problem">Problem</a>
+    <a href="#solution">Solution</a>
+    <a href="#about">About</a>
+    <a href="#creator">Creator</a>
+    <a href="#demo">Demo</a>
   </div>
 </nav>
 
-<section id="home" class="active">
-  <h1>CREATOR ECONOMY PROTOCOL</h1>
-  <p>Automated payment splitting on blockchain</p>
-  <button onclick="show('demo')">Enter System</button>
+<section id="home">
+  <h1>Reimagining Creator Payments</h1>
+  <p>
+    CRE8 is a blockchain-powered system that automates how creators and their teams get paid.
+  </p>
+  <div class="glass">
+    <p>
+      Traditional platforms handle revenue generation but not distribution. CRE8 fills that gap with automated smart contract-based payments.
+    </p>
+    <button onclick="window.location='#demo'">Try Demo</button>
+  </div>
+</section>
+
+<section id="problem">
+  <h1>The Problem</h1>
+  <div class="glass">
+    <ul>
+      <li>Manual payouts create delays</li>
+      <li>No transparency in team payments</li>
+      <li>Trust-based system leads to disputes</li>
+      <li>No automated revenue splitting mechanism</li>
+    </ul>
+  </div>
+</section>
+
+<section id="solution">
+  <h1>The Solution</h1>
+  <div class="glass">
+    <ul>
+      <li>Smart contract-based automation</li>
+      <li>Instant revenue splitting</li>
+      <li>Transparent blockchain transactions</li>
+      <li>No intermediaries</li>
+    </ul>
+  </div>
 </section>
 
 <section id="about">
+  <h1>About CRE8</h1>
   <div class="glass">
-    <h2>System Overview</h2>
-    <p>CRE8 enables trustless revenue distribution using smart contracts.</p>
+    <p>
+      CRE8 is built using Solidity and deployed on Polygon to provide a scalable and low-cost solution for creator payments.
+    </p>
+  </div>
+</section>
+
+<section id="creator">
+  <h1>Creator Economy</h1>
+  <div class="glass">
+    <p>
+      The creator economy is rapidly expanding, but its financial infrastructure remains outdated. CRE8 introduces automation and transparency.
+    </p>
   </div>
 </section>
 
 <section id="demo">
+  <h1>Live Demo</h1>
   <div class="glass">
-    <h2>Payment Engine</h2>
-
     <button onclick="connect()">Connect Wallet</button>
-    <p id="wallet"></p>
 
     <input id="creator" placeholder="Creator Address">
     <input id="collab" placeholder="Collaborator Address">
     <input id="amount" placeholder="Amount (POL)">
 
-    <button onclick="send()">Execute Split</button>
+    <button onclick="send()">Send Payment</button>
 
-    <div id="status"></div>
+    <p id="status"></p>
     <a id="txlink" target="_blank"></a>
-
   </div>
 </section>
 
 <script>
-function show(id) {
-  document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
-}
-
 let signer;
 
 async function connect() {
   const provider = new ethers.BrowserProvider(window.ethereum);
   signer = await provider.getSigner();
-  const address = await signer.getAddress();
-  document.getElementById("wallet").innerText = "Connected: " + address;
 }
 
-const contractAddress = "0x23a88bf4a77cf2d78427117238488d824de3804b";
+const contractAddress = "PASTE_YOUR_CONTRACT_ADDRESS";
 
 const abi = [
   "function distribute(address,address) payable"
 ];
 
 async function send() {
-
   document.getElementById("status").innerText = "Processing...";
 
   const creator = document.getElementById("creator").value;
@@ -175,8 +210,6 @@ async function send() {
     { value: ethers.parseEther(amount) }
   );
 
-  document.getElementById("status").innerText = "Transaction sent...";
-
   await tx.wait();
 
   document.getElementById("status").innerText = "Success!";
@@ -185,44 +218,6 @@ async function send() {
 
   document.getElementById("txlink").innerText = "View Transaction";
 }
-</script>
-
-<script>
-const canvas = document.getElementById("matrix");
-const ctx = canvas.getContext("2d");
-
-canvas.height = window.innerHeight;
-canvas.width = window.innerWidth;
-
-let letters = "01";
-letters = letters.split("");
-
-let fontSize = 14;
-let columns = canvas.width / fontSize;
-
-let drops = [];
-for (let x = 0; x < columns; x++)
-  drops[x] = 1;
-
-function draw() {
-  ctx.fillStyle = "rgba(0,0,0,0.05)";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  ctx.fillStyle = "#00ffcc";
-  ctx.font = fontSize + "px monospace";
-
-  for (let i = 0; i < drops.length; i++) {
-    let text = letters[Math.floor(Math.random() * letters.length)];
-    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975)
-      drops[i] = 0;
-
-    drops[i]++;
-  }
-}
-
-setInterval(draw, 33);
 </script>
 
 </body>
