@@ -17,7 +17,16 @@
       display: flex;
       justify-content: space-between;
       padding: 20px 40px;
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
+      animation: fadeDown 1s ease;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      background: linear-gradient(45deg, #c084fc, #60a5fa);
+      -webkit-background-clip: text;
+      color: transparent;
     }
 
     nav a {
@@ -33,6 +42,7 @@
     section {
       padding: 80px 40px;
       display: none;
+      animation: fadeIn 1s ease;
     }
 
     .active {
@@ -42,6 +52,7 @@
     .hero {
       text-align: center;
       margin-top: 50px;
+      animation: fadeUp 1.5s ease;
     }
 
     .hero h1 {
@@ -59,6 +70,7 @@
       box-shadow: 0 8px 32px rgba(0,0,0,0.3);
       margin-top: 30px;
       max-width: 600px;
+      animation: fadeUp 1.2s ease;
     }
 
     button {
@@ -72,7 +84,8 @@
     }
 
     button:hover {
-      transform: scale(1.05);
+      transform: scale(1.08);
+      box-shadow: 0 0 20px rgba(147,51,234,0.6);
     }
 
     input {
@@ -90,13 +103,28 @@
       align-items: center;
       flex-direction: column;
     }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    @keyframes fadeUp {
+      from {opacity: 0; transform: translateY(30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes fadeDown {
+      from {opacity: 0; transform: translateY(-30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
   </style>
 </head>
 
 <body>
 
 <nav>
-  <h2>CRE8</h2>
+  <div class="logo">CRE8</div>
   <div>
     <a onclick="show('home')">Home</a>
     <a onclick="show('about')">About</a>
@@ -166,7 +194,7 @@ async function connect() {
   alert("Wallet Connected");
 }
 
-const contractAddress = "PASTE_YOUR_CONTRACT_ADDRESS";
+const contractAddress = "0x23a88bf4a77cf2d78427117238488d824de3804b";
 
 const abi = [
   "function distribute(address,address) payable"
