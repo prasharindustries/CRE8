@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CRE8</title>
+</head>
+<body>
+
+<h2>CRE8 - Creator Payment Split</h2>
+
+<button onclick="connect()">Connect Wallet</button><br><br>
+
+<input id="creator" placeholder="Creator Address"><br><br>
+<input id="collab" placeholder="Collaborator Address"><br><br>
+<input id="amount" placeholder="Amount in POL"><br><br>
+
+<button onclick="send()">Send Payment</button>
+
+<script src="https://cdn.jsdelivr.net/npm/ethers@6.6.2/dist/ethers.umd.min.js"></script>
+
+<script>
+
+let signer;
+
+async function connect() {
+  const provider = new ethers.BrowserProvider(window.ethereum);
+  signer = await provider.getSigner();
+  alert("Wallet Connected");
+}
+
+const contractAddress = "0x23a88bf4a77cf2d78427117238488d824de3804b";
+
+const abi = [
+  "function distribute(address,address) payable"
+];
+
+async function send() {
+  const creator = document.getElementById("creator").value;
+  const collab = document.getElementById("collab").value;
+  const amount = document.getElementById("amount").value;
+
+  const contract = new ethers.Contract(contractAddress, abi, signer);
+
+  const tx = await contract.distribute(
+    creator,
+    collab,
+    { value: ethers.parseEther(amount) }
+  );
+
+  await tx.wait();
+
+  alert("Payment Sent Successfully!");
+}
+
+</script>
+
+</body>
+</html>
