@@ -2,22 +2,133 @@
 <html>
 <head>
   <title>CRE8</title>
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.6.2/dist/ethers.umd.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: white;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+      background: #020617;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 10px;
+      cursor: pointer;
+    }
+
+    section {
+      padding: 60px;
+      display: none;
+    }
+
+    .active {
+      display: block;
+    }
+
+    h1 {
+      font-size: 40px;
+    }
+
+    button {
+      padding: 12px 20px;
+      border: none;
+      background: linear-gradient(45deg, #6366f1, #9333ea);
+      color: white;
+      cursor: pointer;
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+
+    input {
+      padding: 10px;
+      margin: 10px 0;
+      width: 300px;
+      border-radius: 6px;
+      border: none;
+    }
+
+    .card {
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+  </style>
 </head>
+
 <body>
 
-<h2>CRE8 - Creator Payment Split</h2>
+<nav>
+  <h2>CRE8</h2>
+  <div>
+    <a onclick="show('home')">Home</a>
+    <a onclick="show('about')">About</a>
+    <a onclick="show('how')">How it Works</a>
+    <a onclick="show('demo')">Demo</a>
+  </div>
+</nav>
 
-<button onclick="connect()">Connect Wallet</button><br><br>
+<!-- HOME -->
+<section id="home" class="active">
+  <h1>Revolutionizing Creator Payments</h1>
+  <p>CRE8 automates revenue splitting using blockchain smart contracts.</p>
+  <button onclick="show('demo')">Try Demo</button>
+</section>
 
-<input id="creator" placeholder="Creator Address"><br><br>
-<input id="collab" placeholder="Collaborator Address"><br><br>
-<input id="amount" placeholder="Amount in POL"><br><br>
+<!-- ABOUT -->
+<section id="about">
+  <h1>About CRE8</h1>
+  <div class="card">
+    <p>
+      CRE8 is a blockchain-based system designed to eliminate manual payment distribution
+      in the creator economy.
+    </p>
+    <p>
+      It ensures instant, transparent, and trustless payments between creators and collaborators.
+    </p>
+  </div>
+</section>
 
-<button onclick="send()">Send Payment</button>
+<!-- HOW IT WORKS -->
+<section id="how">
+  <h1>How It Works</h1>
 
-<script src="https://cdn.jsdelivr.net/npm/ethers@6.6.2/dist/ethers.umd.min.js"></script>
+  <div class="card">
+    <p>1. User connects MetaMask wallet</p>
+    <p>2. Enters creator & collaborator addresses</p>
+    <p>3. Sends payment</p>
+    <p>4. Smart contract splits automatically (80/20)</p>
+  </div>
+</section>
+
+<!-- DEMO -->
+<section id="demo">
+  <h1>Live Demo</h1>
+
+  <button onclick="connect()">Connect Wallet</button><br><br>
+
+  <input id="creator" placeholder="Creator Address"><br>
+  <input id="collab" placeholder="Collaborator Address"><br>
+  <input id="amount" placeholder="Amount (POL)"><br>
+
+  <button onclick="send()">Send Payment</button>
+</section>
 
 <script>
+
+function show(id) {
+  document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
 
 let signer;
 
@@ -48,7 +159,7 @@ async function send() {
 
   await tx.wait();
 
-  alert("Payment Sent Successfully!");
+  alert("Payment Sent!");
 }
 
 </script>
