@@ -8,8 +8,8 @@
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, #eef2ff, #f5f3ff, #e0e7ff);
-      color: #0f172a;
+      background: linear-gradient(135deg, #000000, #1a0000);
+      color: #f8fafc;
     }
 
     nav {
@@ -17,18 +17,15 @@
       width: 100%;
       display: flex;
       justify-content: space-between;
-      align-items: center;
       padding: 15px 40px;
-      background: rgba(255,255,255,0.7);
-      backdrop-filter: blur(15px);
-      z-index: 1000;
+      background: rgba(0,0,0,0.8);
+      backdrop-filter: blur(10px);
     }
 
     .logo {
       font-size: 22px;
-      font-weight: 600;
-      letter-spacing: 1px;
-      background: linear-gradient(45deg, #6366f1, #9333ea);
+      font-weight: bold;
+      background: linear-gradient(45deg, #ff0000, #ff4d4d);
       -webkit-background-clip: text;
       color: transparent;
     }
@@ -38,31 +35,24 @@
       margin: 0 5px;
       border-radius: 20px;
       cursor: pointer;
-      transition: 0.3s;
-      font-size: 14px;
     }
 
     .nav-links a:hover {
-      background: rgba(99,102,241,0.15);
+      background: rgba(255,0,0,0.2);
     }
 
     section {
       padding: 110px 60px;
-      max-width: 950px;
+      max-width: 900px;
       margin: auto;
     }
 
-    h1 {
-      font-size: 38px;
-      margin-bottom: 20px;
-    }
-
     .glass {
-      background: rgba(255,255,255,0.65);
-      border-radius: 18px;
+      background: rgba(255,0,0,0.08);
+      border-radius: 16px;
       padding: 25px;
-      backdrop-filter: blur(20px);
-      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      backdrop-filter: blur(15px);
+      box-shadow: 0 10px 30px rgba(255,0,0,0.2);
       margin-top: 20px;
     }
 
@@ -70,7 +60,7 @@
       padding: 12px 18px;
       border: none;
       border-radius: 10px;
-      background: linear-gradient(45deg, #6366f1, #9333ea);
+      background: linear-gradient(45deg, #ff0000, #ff4d4d);
       color: white;
       cursor: pointer;
       margin-top: 15px;
@@ -82,9 +72,9 @@
       margin: 10px 0;
       border-radius: 8px;
       border: none;
-      background: rgba(255,255,255,0.85);
+      background: #111;
+      color: white;
     }
-
   </style>
 </head>
 
@@ -96,108 +86,72 @@
     <a href="#home">Home</a>
     <a href="#purpose">Purpose</a>
     <a href="#about">About</a>
-    <a href="#creator">Creator Economy</a>
-    <a href="#demo">Demo</a>
+    <a href="#demo">Live Demo</a>
   </div>
 </nav>
 
-<!-- HOME -->
 <section id="home">
-  <h1>Reimagining the Creator Economy</h1>
-
+  <h1>Reimagining Creator Payments</h1>
   <div class="glass">
     <p>
-      The digital creator economy has experienced exponential growth over the past decade, driven by platforms such as YouTube, Instagram, and TikTok.
-      Creators today generate significant revenue through content, sponsorships, and audience engagement.
+      CRE8 is a blockchain-based system designed to automate revenue distribution in the creator economy.
+      It addresses inefficiencies such as delayed payments, lack of transparency, and dependency on centralized platforms.
     </p>
-
-    <p>
-      However, despite this growth, the financial infrastructure supporting creators remains outdated, centralized, and inefficient.
-      CRE8 introduces a blockchain-based approach to redefine how value flows within creator ecosystems.
-    </p>
-
     <button onclick="window.location='#demo'">Try Live Demo</button>
   </div>
 </section>
 
-<!-- PURPOSE -->
 <section id="purpose">
-  <h1>Purpose of CRE8</h1>
-
+  <h1>Purpose</h1>
   <div class="glass">
     <p>
-      The purpose of CRE8 is to address key inefficiencies in the creator economy by leveraging blockchain technology.
-      Traditional systems rely heavily on centralized platforms that control revenue distribution, introduce delays, and lack transparency.
-    </p>
-
-    <p>
-      CRE8 aims to build a decentralized financial layer where payments are automated, transparent, and trustless.
+      The primary purpose of CRE8 is to introduce a decentralized financial layer for creators.
+      By leveraging blockchain and smart contracts, CRE8 ensures instant, transparent, and trustless payment distribution.
     </p>
 
     <ul>
-      <li>Enable instant and transparent payments</li>
-      <li>Eliminate intermediaries and platform dependency</li>
-      <li>Automate revenue sharing using smart contracts</li>
-      <li>Build trust between creators and collaborators</li>
+      <li>Eliminate intermediaries</li>
+      <li>Enable automated revenue splitting</li>
+      <li>Reduce payment delays</li>
+      <li>Increase trust and transparency</li>
     </ul>
   </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about">
-  <h1>About the System</h1>
-
+  <h1>About CRE8</h1>
   <div class="glass">
     <p>
-      CRE8 is a decentralized application built using Solidity smart contracts and deployed on the Polygon blockchain.
-      It demonstrates how blockchain can be applied to automate financial processes in the creator economy.
+      CRE8 is a decentralized application built using Solidity smart contracts deployed on the Polygon blockchain.
     </p>
 
     <p>
-      The system allows users to connect their MetaMask wallet, initiate payments, and automatically distribute funds between multiple stakeholders.
+      In the current creator economy, platforms like YouTube and Instagram generate revenue but do not provide automated distribution.
+      Payments are received by a single entity and then manually distributed, leading to inefficiencies.
     </p>
 
     <p>
-      The core logic is implemented using smart contracts, which enforce predefined rules (such as 80/20 revenue split) without requiring manual intervention.
+      CRE8 solves this by introducing a smart contract-based payment system where funds are automatically split between stakeholders.
+      The current implementation demonstrates an 80/20 revenue split between a creator and collaborator.
     </p>
 
     <p>
-      The platform acts as a proof-of-concept for decentralized financial infrastructure in content-driven ecosystems.
+      The system uses MetaMask for wallet interaction and Ethers.js for blockchain communication.
+      The frontend is built using HTML, CSS, and JavaScript and hosted on GitHub Pages.
+    </p>
+
+    <p>
+      This project serves as a proof-of-concept for decentralized financial infrastructure in the creator economy.
     </p>
   </div>
 </section>
 
-<!-- CREATOR ECONOMY -->
-<section id="creator">
-  <h1>The Creator Economy Landscape</h1>
-
-  <div class="glass">
-    <p>
-      The creator economy is a multi-billion-dollar ecosystem consisting of content creators, influencers, designers, and digital entrepreneurs.
-      Despite its scale, it is largely dependent on centralized platforms that dictate monetization models and revenue distribution.
-    </p>
-
-    <p>
-      Current challenges include delayed payments (30–60 days), high platform commissions (up to 50%), and lack of transparency in earnings.
-    </p>
-
-    <p>
-      Blockchain technology introduces a paradigm shift by enabling decentralized, transparent, and automated financial systems.
-      CRE8 leverages these capabilities to create a more efficient and fair ecosystem for creators.
-    </p>
-
-    <p>
-      By focusing on payment automation rather than content hosting, CRE8 integrates seamlessly into existing platforms while improving financial workflows.
-    </p>
-  </div>
-</section>
-
-<!-- DEMO -->
 <section id="demo">
-  <h1>Live Demonstration</h1>
+  <h1>Live Demo</h1>
 
   <div class="glass">
     <button onclick="connect()">Connect Wallet</button>
+    <p id="wallet"></p>
 
     <input id="creator" placeholder="Creator Address">
     <input id="collab" placeholder="Collaborator Address">
@@ -214,8 +168,24 @@
 let signer;
 
 async function connect() {
-  const provider = new ethers.BrowserProvider(window.ethereum);
-  signer = await provider.getSigner();
+  try {
+    if (!window.ethereum) {
+      alert("MetaMask not installed");
+      return;
+    }
+
+    await window.ethereum.request({ method: 'eth_requestAccounts' });
+
+    const provider = new ethers.BrowserProvider(window.ethereum);
+    signer = await provider.getSigner();
+
+    const address = await signer.getAddress();
+    document.getElementById("wallet").innerText = "Connected: " + address;
+
+  } catch (err) {
+    console.error(err);
+    alert("Connection failed");
+  }
 }
 
 const contractAddress = "0x23a88bf4a77cf2d78427117238488d824de3804b";
@@ -225,27 +195,33 @@ const abi = [
 ];
 
 async function send() {
-  document.getElementById("status").innerText = "Processing...";
+  try {
+    document.getElementById("status").innerText = "Processing...";
 
-  const creator = document.getElementById("creator").value;
-  const collab = document.getElementById("collab").value;
-  const amount = document.getElementById("amount").value;
+    const creator = document.getElementById("creator").value;
+    const collab = document.getElementById("collab").value;
+    const amount = document.getElementById("amount").value;
 
-  const contract = new ethers.Contract(contractAddress, abi, signer);
+    const contract = new ethers.Contract(contractAddress, abi, signer);
 
-  const tx = await contract.distribute(
-    creator,
-    collab,
-    { value: ethers.parseEther(amount) }
-  );
+    const tx = await contract.distribute(
+      creator,
+      collab,
+      { value: ethers.parseEther(amount) }
+    );
 
-  await tx.wait();
+    await tx.wait();
 
-  document.getElementById("status").innerText = "Success!";
-  document.getElementById("txlink").href =
-    "https://amoy.polygonscan.com/tx/" + tx.hash;
+    document.getElementById("status").innerText = "Success!";
+    document.getElementById("txlink").href =
+      "https://amoy.polygonscan.com/tx/" + tx.hash;
 
-  document.getElementById("txlink").innerText = "View Transaction";
+    document.getElementById("txlink").innerText = "View Transaction";
+
+  } catch (err) {
+    console.error(err);
+    document.getElementById("status").innerText = "Transaction failed";
+  }
 }
 </script>
 
