@@ -8,7 +8,7 @@
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, #e0e7ff, #f5f3ff, #eef2ff);
+      background: linear-gradient(135deg, #eef2ff, #f5f3ff, #e0e7ff);
       color: #0f172a;
     }
 
@@ -17,15 +17,17 @@
       width: 100%;
       display: flex;
       justify-content: space-between;
+      align-items: center;
       padding: 15px 40px;
-      backdrop-filter: blur(12px);
-      background: rgba(255,255,255,0.6);
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(15px);
       z-index: 1000;
     }
 
     .logo {
       font-size: 22px;
-      font-weight: bold;
+      font-weight: 600;
+      letter-spacing: 1px;
       background: linear-gradient(45deg, #6366f1, #9333ea);
       -webkit-background-clip: text;
       color: transparent;
@@ -41,23 +43,23 @@
     }
 
     .nav-links a:hover {
-      background: rgba(99,102,241,0.2);
+      background: rgba(99,102,241,0.15);
     }
 
     section {
       padding: 110px 60px;
-      max-width: 900px;
+      max-width: 950px;
       margin: auto;
     }
 
     h1 {
-      font-size: 40px;
+      font-size: 38px;
       margin-bottom: 20px;
     }
 
     .glass {
-      background: rgba(255,255,255,0.6);
-      border-radius: 16px;
+      background: rgba(255,255,255,0.65);
+      border-radius: 18px;
       padding: 25px;
       backdrop-filter: blur(20px);
       box-shadow: 0 10px 40px rgba(0,0,0,0.1);
@@ -71,12 +73,7 @@
       background: linear-gradient(45deg, #6366f1, #9333ea);
       color: white;
       cursor: pointer;
-      transition: 0.3s;
-    }
-
-    button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(99,102,241,0.4);
+      margin-top: 15px;
     }
 
     input {
@@ -85,12 +82,7 @@
       margin: 10px 0;
       border-radius: 8px;
       border: none;
-      background: rgba(255,255,255,0.8);
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
+      background: rgba(255,255,255,0.85);
     }
 
   </style>
@@ -102,71 +94,108 @@
   <div class="logo">CRE8</div>
   <div class="nav-links">
     <a href="#home">Home</a>
-    <a href="#problem">Problem</a>
-    <a href="#solution">Solution</a>
+    <a href="#purpose">Purpose</a>
     <a href="#about">About</a>
-    <a href="#creator">Creator</a>
+    <a href="#creator">Creator Economy</a>
     <a href="#demo">Demo</a>
   </div>
 </nav>
 
+<!-- HOME -->
 <section id="home">
-  <h1>Reimagining Creator Payments</h1>
-  <p>
-    CRE8 is a blockchain-powered system that automates how creators and their teams get paid.
-  </p>
+  <h1>Reimagining the Creator Economy</h1>
+
   <div class="glass">
     <p>
-      Traditional platforms handle revenue generation but not distribution. CRE8 fills that gap with automated smart contract-based payments.
+      The digital creator economy has experienced exponential growth over the past decade, driven by platforms such as YouTube, Instagram, and TikTok.
+      Creators today generate significant revenue through content, sponsorships, and audience engagement.
     </p>
-    <button onclick="window.location='#demo'">Try Demo</button>
+
+    <p>
+      However, despite this growth, the financial infrastructure supporting creators remains outdated, centralized, and inefficient.
+      CRE8 introduces a blockchain-based approach to redefine how value flows within creator ecosystems.
+    </p>
+
+    <button onclick="window.location='#demo'">Try Live Demo</button>
   </div>
 </section>
 
-<section id="problem">
-  <h1>The Problem</h1>
+<!-- PURPOSE -->
+<section id="purpose">
+  <h1>Purpose of CRE8</h1>
+
   <div class="glass">
+    <p>
+      The purpose of CRE8 is to address key inefficiencies in the creator economy by leveraging blockchain technology.
+      Traditional systems rely heavily on centralized platforms that control revenue distribution, introduce delays, and lack transparency.
+    </p>
+
+    <p>
+      CRE8 aims to build a decentralized financial layer where payments are automated, transparent, and trustless.
+    </p>
+
     <ul>
-      <li>Manual payouts create delays</li>
-      <li>No transparency in team payments</li>
-      <li>Trust-based system leads to disputes</li>
-      <li>No automated revenue splitting mechanism</li>
+      <li>Enable instant and transparent payments</li>
+      <li>Eliminate intermediaries and platform dependency</li>
+      <li>Automate revenue sharing using smart contracts</li>
+      <li>Build trust between creators and collaborators</li>
     </ul>
   </div>
 </section>
 
-<section id="solution">
-  <h1>The Solution</h1>
-  <div class="glass">
-    <ul>
-      <li>Smart contract-based automation</li>
-      <li>Instant revenue splitting</li>
-      <li>Transparent blockchain transactions</li>
-      <li>No intermediaries</li>
-    </ul>
-  </div>
-</section>
-
+<!-- ABOUT -->
 <section id="about">
-  <h1>About CRE8</h1>
+  <h1>About the System</h1>
+
   <div class="glass">
     <p>
-      CRE8 is built using Solidity and deployed on Polygon to provide a scalable and low-cost solution for creator payments.
+      CRE8 is a decentralized application built using Solidity smart contracts and deployed on the Polygon blockchain.
+      It demonstrates how blockchain can be applied to automate financial processes in the creator economy.
+    </p>
+
+    <p>
+      The system allows users to connect their MetaMask wallet, initiate payments, and automatically distribute funds between multiple stakeholders.
+    </p>
+
+    <p>
+      The core logic is implemented using smart contracts, which enforce predefined rules (such as 80/20 revenue split) without requiring manual intervention.
+    </p>
+
+    <p>
+      The platform acts as a proof-of-concept for decentralized financial infrastructure in content-driven ecosystems.
     </p>
   </div>
 </section>
 
+<!-- CREATOR ECONOMY -->
 <section id="creator">
-  <h1>Creator Economy</h1>
+  <h1>The Creator Economy Landscape</h1>
+
   <div class="glass">
     <p>
-      The creator economy is rapidly expanding, but its financial infrastructure remains outdated. CRE8 introduces automation and transparency.
+      The creator economy is a multi-billion-dollar ecosystem consisting of content creators, influencers, designers, and digital entrepreneurs.
+      Despite its scale, it is largely dependent on centralized platforms that dictate monetization models and revenue distribution.
+    </p>
+
+    <p>
+      Current challenges include delayed payments (30–60 days), high platform commissions (up to 50%), and lack of transparency in earnings.
+    </p>
+
+    <p>
+      Blockchain technology introduces a paradigm shift by enabling decentralized, transparent, and automated financial systems.
+      CRE8 leverages these capabilities to create a more efficient and fair ecosystem for creators.
+    </p>
+
+    <p>
+      By focusing on payment automation rather than content hosting, CRE8 integrates seamlessly into existing platforms while improving financial workflows.
     </p>
   </div>
 </section>
 
+<!-- DEMO -->
 <section id="demo">
-  <h1>Live Demo</h1>
+  <h1>Live Demonstration</h1>
+
   <div class="glass">
     <button onclick="connect()">Connect Wallet</button>
 
