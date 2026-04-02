@@ -8,73 +8,140 @@
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, #000000, #1a0000);
+      background: radial-gradient(circle at top, #1a0000, #000000 70%);
       color: #f8fafc;
+      line-height: 1.6;
     }
 
+    /* NAVBAR */
     nav {
       position: fixed;
       width: 100%;
       display: flex;
       justify-content: space-between;
-      padding: 15px 40px;
-      background: rgba(0,0,0,0.8);
-      backdrop-filter: blur(10px);
+      align-items: center;
+      padding: 18px 50px;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(12px);
+      z-index: 1000;
     }
 
     .logo {
-      font-size: 22px;
-      font-weight: bold;
-      background: linear-gradient(45deg, #ff0000, #ff4d4d);
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      background: linear-gradient(45deg, #ff0000, #ff6666);
       -webkit-background-clip: text;
       color: transparent;
     }
 
     .nav-links a {
-      padding: 8px 14px;
-      margin: 0 5px;
-      border-radius: 20px;
+      padding: 10px 16px;
+      margin: 0 8px;
+      border-radius: 25px;
       cursor: pointer;
+      font-size: 15px;
+      color: #e5e7eb;
+      text-decoration: none;
+      transition: 0.3s;
     }
 
     .nav-links a:hover {
-      background: rgba(255,0,0,0.2);
+      background: rgba(255,0,0,0.25);
+      color: #fff;
     }
 
+    /* SECTIONS */
     section {
-      padding: 110px 60px;
-      max-width: 900px;
+      padding: 140px 60px;
+      max-width: 1000px;
       margin: auto;
+      position: relative;
     }
 
+    h1 {
+      font-size: 42px;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    p {
+      font-size: 17px;
+      color: #d1d5db;
+    }
+
+    /* GLASS CARD */
     .glass {
-      background: rgba(255,0,0,0.08);
-      border-radius: 16px;
-      padding: 25px;
-      backdrop-filter: blur(15px);
-      box-shadow: 0 10px 30px rgba(255,0,0,0.2);
-      margin-top: 20px;
+      background: rgba(255,0,0,0.06);
+      border-radius: 18px;
+      padding: 30px;
+      backdrop-filter: blur(18px);
+      box-shadow: 0 15px 40px rgba(255,0,0,0.25);
+      margin-top: 25px;
+      border: 1px solid rgba(255,0,0,0.15);
     }
 
+    ul li {
+      margin: 10px 0;
+      font-size: 16px;
+    }
+
+    /* BUTTON */
     button {
-      padding: 12px 18px;
+      padding: 14px 22px;
       border: none;
-      border-radius: 10px;
+      border-radius: 12px;
       background: linear-gradient(45deg, #ff0000, #ff4d4d);
       color: white;
       cursor: pointer;
-      margin-top: 15px;
+      margin-top: 20px;
+      font-size: 15px;
+      font-weight: 600;
+      transition: 0.3s;
     }
 
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(255,0,0,0.5);
+    }
+
+    /* INPUT */
     input {
       width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 8px;
-      border: none;
-      background: #111;
+      padding: 12px;
+      margin: 12px 0;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: #0a0a0a;
       color: white;
+      font-size: 15px;
     }
+
+    /* 🔴 TOP RIGHT IMAGE FIX */
+    .hero-image {
+      position: absolute;
+      top: 120px;
+      right: 60px;
+      width: 280px;
+      opacity: 0.9;
+      filter: drop-shadow(0 0 25px rgba(255,0,0,0.5));
+    }
+
+    /* RESPONSIVE */
+    @media(max-width: 900px) {
+      .hero-image {
+        display: none;
+      }
+
+      section {
+        padding: 120px 30px;
+      }
+
+      h1 {
+        font-size: 32px;
+      }
+    }
+
   </style>
 </head>
 
@@ -86,69 +153,62 @@
     <a href="#home">Home</a>
     <a href="#purpose">Purpose</a>
     <a href="#about">About</a>
-    <a href="#demo">Demo</a>
+    <a href="#demo">Live Demo</a>
   </div>
 </nav>
 
+<!-- HOME -->
 <section id="home">
   <h1>Reimagining Creator Payments</h1>
+
+  <!-- 🔴 TOP RIGHT IMAGE -->
+  <img src="your-image.png" class="hero-image">
+
   <div class="glass">
     <p>
       CRE8 is a blockchain-based system designed to automate revenue distribution in the creator economy.
-      It addresses inefficiencies such as delayed payments, lack of transparency, and dependency on centralized platforms.
+      It eliminates delays, removes intermediaries, and ensures instant, trustless payouts.
     </p>
     <button onclick="window.location='#demo'">Try Live Demo</button>
   </div>
 </section>
 
+<!-- PURPOSE -->
 <section id="purpose">
   <h1>Purpose</h1>
   <div class="glass">
     <p>
-      The evolution of Web3 has led to the emergence of several decentralized platforms aimed at transforming the creator economy.
-      These platforms attempt to eliminate intermediaries, provide ownership, and enable direct monetization. However, despite their
-      innovation, most existing solutions still suffer from limitations in usability, scalability, decentralization, or revenue automation.
-      The primary purpose of CRE8 is to introduce a decentralized financial layer for creators.
-      By leveraging blockchain and smart contracts, CRE8 ensures instant, transparent, and trustless payment distribution.
+      CRE8 introduces a decentralized financial layer for creators by leveraging blockchain-based automation.
     </p>
 
     <ul>
-      <li>Eliminate intermediaries</li>
-      <li>Enable automated revenue splitting</li>
-      <li>Reduce payment delays</li>
-      <li>Increase trust and transparency</li>
+      <li>🚀 Eliminate intermediaries</li>
+      <li>⚡ Instant payments</li>
+      <li>🔐 Trustless smart contracts</li>
+      <li>📊 Transparent revenue sharing</li>
     </ul>
   </div>
 </section>
 
+<!-- ABOUT -->
 <section id="about">
   <h1>About CRE8</h1>
   <div class="glass">
     <p>
-      CRE8 is a decentralized application built using Solidity smart contracts deployed on the Polygon blockchain.
+      Built on Polygon using Solidity smart contracts, CRE8 enables automated revenue splitting (80/20 model).
     </p>
 
     <p>
-      In the current creator economy, platforms like YouTube and Instagram generate revenue but do not provide automated distribution.
-      Payments are received by a single entity and then manually distributed, leading to inefficiencies.
+      Unlike Web2 platforms, payments are executed instantly via smart contracts — no delays, no manual distribution.
     </p>
 
     <p>
-      CRE8 solves this by introducing a smart contract-based payment system where funds are automatically split between stakeholders.
-      The current implementation demonstrates an 80/20 revenue split between a creator and collaborator.
-    </p>
-
-    <p>
-      The system uses MetaMask for wallet interaction and Ethers.js for blockchain communication.
-      The frontend is built using HTML, CSS, and JavaScript and hosted on GitHub Pages.
-    </p>
-
-    <p>
-      This project serves as a proof-of-concept for decentralized financial infrastructure in the creator economy.
+      Integrated with MetaMask and powered by Ethers.js for seamless blockchain interaction.
     </p>
   </div>
 </section>
 
+<!-- DEMO -->
 <section id="demo">
   <h1>Live Demo</h1>
 
