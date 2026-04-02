@@ -7,26 +7,31 @@
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f172a;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e3a8a, #9333ea);
       color: white;
+      overflow-x: hidden;
     }
 
     nav {
       display: flex;
       justify-content: space-between;
-      padding: 20px;
-      background: #020617;
+      padding: 20px 40px;
+      backdrop-filter: blur(10px);
     }
 
     nav a {
-      color: white;
-      margin: 0 10px;
+      margin: 0 15px;
       cursor: pointer;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #a5b4fc;
     }
 
     section {
-      padding: 60px;
+      padding: 80px 40px;
       display: none;
     }
 
@@ -34,33 +39,56 @@
       display: block;
     }
 
-    h1 {
-      font-size: 40px;
+    .hero {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .hero h1 {
+      font-size: 50px;
+      background: linear-gradient(45deg, #c084fc, #60a5fa);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .glass {
+      background: rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 30px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      margin-top: 30px;
+      max-width: 600px;
     }
 
     button {
-      padding: 12px 20px;
+      padding: 12px 25px;
       border: none;
+      border-radius: 10px;
       background: linear-gradient(45deg, #6366f1, #9333ea);
       color: white;
       cursor: pointer;
-      border-radius: 8px;
-      margin-top: 10px;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
     }
 
     input {
-      padding: 10px;
+      width: 90%;
+      padding: 12px;
       margin: 10px 0;
-      width: 300px;
-      border-radius: 6px;
+      border-radius: 8px;
       border: none;
+      outline: none;
     }
 
-    .card {
-      background: #1e293b;
-      padding: 20px;
-      border-radius: 10px;
-      margin: 20px 0;
+    .center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
     }
   </style>
 </head>
@@ -72,55 +100,55 @@
   <div>
     <a onclick="show('home')">Home</a>
     <a onclick="show('about')">About</a>
-    <a onclick="show('how')">How it Works</a>
+    <a onclick="show('how')">How</a>
     <a onclick="show('demo')">Demo</a>
   </div>
 </nav>
 
 <!-- HOME -->
-<section id="home" class="active">
-  <h1>Revolutionizing Creator Payments</h1>
-  <p>CRE8 automates revenue splitting using blockchain smart contracts.</p>
-  <button onclick="show('demo')">Try Demo</button>
+<section id="home" class="active center">
+  <div class="hero">
+    <h1>Automate Creator Payments</h1>
+    <p>No delays. No trust issues. Just blockchain.</p>
+    <button onclick="show('demo')">Try Demo</button>
+  </div>
 </section>
 
 <!-- ABOUT -->
-<section id="about">
-  <h1>About CRE8</h1>
-  <div class="card">
+<section id="about" class="center">
+  <div class="glass">
+    <h2>About CRE8</h2>
     <p>
-      CRE8 is a blockchain-based system designed to eliminate manual payment distribution
-      in the creator economy.
-    </p>
-    <p>
-      It ensures instant, transparent, and trustless payments between creators and collaborators.
+      CRE8 is a decentralized payment system designed for the creator economy.
+      It removes manual payouts and automates revenue splitting using smart contracts.
     </p>
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section id="how">
-  <h1>How It Works</h1>
-
-  <div class="card">
-    <p>1. User connects MetaMask wallet</p>
-    <p>2. Enters creator & collaborator addresses</p>
-    <p>3. Sends payment</p>
-    <p>4. Smart contract splits automatically (80/20)</p>
+<!-- HOW -->
+<section id="how" class="center">
+  <div class="glass">
+    <h2>How It Works</h2>
+    <p>1. Connect wallet</p>
+    <p>2. Enter addresses</p>
+    <p>3. Send payment</p>
+    <p>4. Auto split (80/20)</p>
   </div>
 </section>
 
 <!-- DEMO -->
-<section id="demo">
-  <h1>Live Demo</h1>
+<section id="demo" class="center">
+  <div class="glass">
+    <h2>Live Demo</h2>
 
-  <button onclick="connect()">Connect Wallet</button><br><br>
+    <button onclick="connect()">Connect Wallet</button><br><br>
 
-  <input id="creator" placeholder="Creator Address"><br>
-  <input id="collab" placeholder="Collaborator Address"><br>
-  <input id="amount" placeholder="Amount (POL)"><br>
+    <input id="creator" placeholder="Creator Address">
+    <input id="collab" placeholder="Collaborator Address">
+    <input id="amount" placeholder="Amount (POL)">
 
-  <button onclick="send()">Send Payment</button>
+    <button onclick="send()">Send Payment</button>
+  </div>
 </section>
 
 <script>
@@ -138,7 +166,7 @@ async function connect() {
   alert("Wallet Connected");
 }
 
-const contractAddress = "0x23a88bf4a77cf2d78427117238488d824de3804b";
+const contractAddress = "PASTE_YOUR_CONTRACT_ADDRESS";
 
 const abi = [
   "function distribute(address,address) payable"
@@ -159,7 +187,7 @@ async function send() {
 
   await tx.wait();
 
-  alert("Payment Sent!");
+  alert("Payment Sent Successfully!");
 }
 
 </script>
