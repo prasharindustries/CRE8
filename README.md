@@ -28,9 +28,6 @@ CRE8 is a decentralized creator payment platform built on Polygon that enables i
 ## Architecture
 User → Frontend → Ethers.js → Smart Contract → Polygon
 
-##  Demo
-(Add screenshots / GIF here)
-
 ##  Run Locally
 
 ```bash
