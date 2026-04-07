@@ -1,0 +1,8 @@
+# System Architecture
+
+Frontend → Ethers.js → Smart Contract → Polygon Network
+
+- User interacts via browser
+- Wallet signs transaction
+- Smart contract executes split
+- Blockchain stores record
