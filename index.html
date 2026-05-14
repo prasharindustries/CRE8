@@ -221,13 +221,14 @@ button:hover{
   font-family:monospace;
   line-height:2;
   color:#d1d5db;
+  min-height:260px;
 }
 
 .success{
   color:#4ade80;
 }
 
-/* STATUS DASHBOARD */
+/* STATUS */
 
 .protocol-status{
   display:grid;
@@ -332,6 +333,12 @@ button:hover{
   text-align:center;
   margin:14px auto;
   max-width:550px;
+  transition:0.3s;
+}
+
+.flow-box:hover{
+  border-color:#ff4444;
+  transform:translateY(-4px);
 }
 
 .arrow{
@@ -420,6 +427,40 @@ button:hover{
   color:#4ade80;
 }
 
+/* CONTRACT */
+
+.contract-box{
+  margin-top:40px;
+  background:#070707;
+  border-radius:28px;
+  border:1px solid rgba(255,255,255,0.06);
+  overflow:hidden;
+}
+
+.contract-header{
+  display:flex;
+  gap:8px;
+  padding:16px;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+
+.contract-header span{
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  background:#444;
+}
+
+.contract-box pre{
+  padding:30px;
+  overflow-x:auto;
+}
+
+.contract-box code{
+  color:#d1d5db;
+  line-height:2;
+}
+
 /* BUILT FOR */
 
 .built-grid{
@@ -434,10 +475,6 @@ button:hover{
   border-radius:22px;
   background:#070707;
   border:1px solid rgba(255,255,255,0.06);
-}
-
-.built-card h3{
-  margin-bottom:14px;
 }
 
 /* ROADMAP */
@@ -480,6 +517,40 @@ input{
   display:block;
   margin-top:20px;
   word-break:break-word;
+}
+
+/* FLOATING STATUS */
+
+.floating-status{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  width:220px;
+  background:rgba(0,0,0,0.88);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:24px;
+  padding:20px;
+  backdrop-filter:blur(18px);
+  z-index:999;
+  box-shadow:0 20px 50px rgba(0,0,0,0.5);
+}
+
+.floating-item{
+  margin-bottom:18px;
+}
+
+.floating-item:last-child{
+  margin-bottom:0;
+}
+
+.floating-item span{
+  font-size:11px;
+  color:#9ca3af;
+  letter-spacing:1px;
+}
+
+.floating-item h3{
+  margin-top:8px;
 }
 
 /* FOOTER */
@@ -530,6 +601,10 @@ footer{
     animation:moveVertical 1.8s infinite linear;
   }
 
+  .floating-status{
+    display:none;
+  }
+
   @keyframes moveVertical{
 
     from{
@@ -553,29 +628,24 @@ footer{
 <div class="bg-grid"></div>
 <div class="glow"></div>
 
-<!-- NAV -->
-
 <nav>
 
-  <div class="logo">CRE8</div>
+<div class="logo">CRE8</div>
 
-  <div class="nav-links">
+<div class="nav-links">
 
-    <a href="#home">Home</a>
-    <a href="#features">Features</a>
-    <a href="#architecture">Architecture</a>
-    <a href="#protocol">Protocol</a>
-    <a href="#roadmap">Roadmap</a>
-    <a href="#demo">Demo</a>
+<a href="#home">Home</a>
+<a href="#features">Features</a>
+<a href="#architecture">Architecture</a>
+<a href="#protocol">Protocol</a>
+<a href="#roadmap">Roadmap</a>
+<a href="#demo">Demo</a>
 
-    <a
-      href="https://github.com/prasharindustries/CRE8"
-      target="_blank"
-    >
-      GitHub
-    </a>
+<a href="https://github.com/prasharindustries/CRE8" target="_blank">
+GitHub
+</a>
 
-  </div>
+</div>
 
 </nav>
 
@@ -583,120 +653,138 @@ footer{
 
 <section id="home">
 
-  <div class="hero">
+<div class="hero">
 
-    <div>
+<div>
 
-      <div class="badge">
-        Decentralized Payment Infrastructure
-      </div>
+<div class="badge">
+Decentralized Payment Infrastructure
+</div>
 
-      <h1>
-        Fixing How Creators Get Paid
-      </h1>
+<h1>
+Fixing How Creators Get Paid
+</h1>
 
-      <p>
-        CRE8 automates creator revenue distribution using Polygon smart contracts,
-        enabling instant, transparent, and programmable payouts without intermediaries.
-      </p>
-
-      <div class="hero-buttons">
-
-        <button onclick="scrollToDemo()">
-          Launch Demo
-        </button>
-
-        <button
-          class="secondary-btn"
-          onclick="window.open('https://github.com/prasharindustries/CRE8')"
-        >
-          View GitHub
-        </button>
-
-      </div>
-
-      <!-- STATUS -->
-
-      <div class="protocol-status">
-
-        <div class="status-item">
-          <span>STATUS</span>
-          <h3>ACTIVE</h3>
-        </div>
-
-        <div class="status-item">
-          <span>CHAIN</span>
-          <h3>POLYGON</h3>
-        </div>
-
-        <div class="status-item">
-          <span>CONTRACT</span>
-          <h3>VERIFIED</h3>
-        </div>
-
-        <div class="status-item">
-          <span>UPTIME</span>
-          <h3>99.99%</h3>
-        </div>
-
-      </div>
-
-    </div>
-
-    <!-- TERMINAL -->
-
-    <div class="terminal">
-
-      <div class="terminal-top">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-
-      <div class="terminal-content">
-
-<p>> initializing protocol...</p>
-<p>> verifying smart contract...</p>
-<p>> wallet authenticated</p>
-<p>> distribution engine active</p>
-
-<br>
-
-<p class="success">
-✓ payment successfully distributed
+<p>
+CRE8 automates creator revenue distribution using Polygon smart contracts,
+enabling instant, transparent, and programmable payouts without intermediaries.
 </p>
 
-      </div>
+<div class="hero-buttons">
 
-    </div>
+<button onclick="scrollToDemo()">
+Launch Demo
+</button>
 
-  </div>
+<button
+class="secondary-btn"
+onclick="window.open('https://github.com/prasharindustries/CRE8')"
+>
+View GitHub
+</button>
 
-  <!-- STATS -->
+</div>
 
-  <div class="stats">
+<!-- STATUS -->
 
-    <div class="stat-card">
-      <h2>$2.4M</h2>
-      <p>Revenue Distributed</p>
-    </div>
+<div class="protocol-status">
 
-    <div class="stat-card">
-      <h2>14K+</h2>
-      <p>Transactions Executed</p>
-    </div>
+<div class="status-item">
+<span>STATUS</span>
+<h3>ACTIVE</h3>
+</div>
 
-    <div class="stat-card">
-      <h2>99.99%</h2>
-      <p>Transparent On-Chain</p>
-    </div>
+<div class="status-item">
+<span>CHAIN</span>
+<h3>POLYGON</h3>
+</div>
 
-    <div class="stat-card">
-      <h2>1.2s</h2>
-      <p>Settlement Latency</p>
-    </div>
+<div class="status-item">
+<span>CONTRACT</span>
+<h3>VERIFIED</h3>
+</div>
 
-  </div>
+<div class="status-item">
+<span>UPTIME</span>
+<h3>99.99%</h3>
+</div>
+
+</div>
+
+</div>
+
+<!-- TERMINAL -->
+
+<div>
+
+<div class="terminal">
+
+<div class="terminal-top">
+<span></span>
+<span></span>
+<span></span>
+</div>
+
+<div class="terminal-content">
+</div>
+
+</div>
+
+<!-- MONITOR -->
+
+<div class="protocol-status">
+
+<div class="status-item">
+<span>NETWORK</span>
+<h3>Polygon Amoy</h3>
+</div>
+
+<div class="status-item">
+<span>CONTRACT</span>
+<h3>Verified</h3>
+</div>
+
+<div class="status-item">
+<span>GAS STATUS</span>
+<h3 id="gasValue">31 Gwei</h3>
+</div>
+
+<div class="status-item">
+<span>SETTLEMENT</span>
+<h3>Fast</h3>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- STATS -->
+
+<div class="stats">
+
+<div class="stat-card">
+<h2>$2.4M</h2>
+<p>Revenue Distributed</p>
+</div>
+
+<div class="stat-card">
+<h2>14K+</h2>
+<p>Transactions Executed</p>
+</div>
+
+<div class="stat-card">
+<h2>99.99%</h2>
+<p>Transparent On-Chain</p>
+</div>
+
+<div class="stat-card">
+<h2>1.2s</h2>
+<p>Settlement Latency</p>
+</div>
+
+</div>
 
 </section>
 
@@ -704,53 +792,53 @@ footer{
 
 <section id="features">
 
-  <h1>Why CRE8 Exists</h1>
+<h1>Why CRE8 Exists</h1>
 
-  <div class="glass">
+<div class="glass">
 
-    <p>
-      The creator economy generates billions in value, yet payment infrastructure
-      remains centralized, delayed, and opaque.
-    </p>
+<p>
+The creator economy generates billions in value, yet payment infrastructure
+remains centralized, delayed, and opaque.
+</p>
 
-    <p>
-      CRE8 introduces programmable revenue execution through blockchain-native
-      financial coordination.
-    </p>
+<p>
+CRE8 introduces programmable revenue execution through blockchain-native
+financial coordination.
+</p>
 
-    <div class="feature-grid">
+<div class="feature-grid">
 
-      <div class="feature-card">
-        <h3>Instant Payouts</h3>
-        <p>
-          Automated revenue distribution without payout delays.
-        </p>
-      </div>
+<div class="feature-card">
+<h3>Instant Payouts</h3>
+<p>
+Automated revenue distribution without payout delays.
+</p>
+</div>
 
-      <div class="feature-card">
-        <h3>Trustless Execution</h3>
-        <p>
-          Smart contracts enforce payout logic transparently.
-        </p>
-      </div>
+<div class="feature-card">
+<h3>Trustless Execution</h3>
+<p>
+Smart contracts enforce payout logic transparently.
+</p>
+</div>
 
-      <div class="feature-card">
-        <h3>Transparent Revenue Flow</h3>
-        <p>
-          Every transaction is verifiable on-chain.
-        </p>
-      </div>
+<div class="feature-card">
+<h3>Transparent Revenue Flow</h3>
+<p>
+Every transaction is verifiable on-chain.
+</p>
+</div>
 
-      <div class="feature-card">
-        <h3>Scalable Infrastructure</h3>
-        <p>
-          Built as reusable creator payment infrastructure.
-        </p>
-      </div>
+<div class="feature-card">
+<h3>Scalable Infrastructure</h3>
+<p>
+Built as reusable creator payment infrastructure.
+</p>
+</div>
 
-    </div>
+</div>
 
-  </div>
+</div>
 
 </section>
 
@@ -758,48 +846,48 @@ footer{
 
 <section id="architecture">
 
-  <h1>System Architecture</h1>
+<h1>System Architecture</h1>
 
-  <div class="glass">
+<div class="glass">
 
-    <p>
-      CRE8 uses lightweight decentralized architecture integrating wallet authentication,
-      smart contract execution, and on-chain revenue distribution.
-    </p>
+<p>
+CRE8 uses lightweight decentralized architecture integrating wallet authentication,
+smart contract execution, and on-chain revenue distribution.
+</p>
 
-    <div class="architecture">
+<div class="architecture">
 
-      <div class="flow-box">
-        Frontend Interface
-      </div>
+<div class="flow-box">
+Frontend Interface
+</div>
 
-      <div class="arrow">↓</div>
+<div class="arrow">↓</div>
 
-      <div class="flow-box">
-        MetaMask Authentication
-      </div>
+<div class="flow-box">
+MetaMask Authentication
+</div>
 
-      <div class="arrow">↓</div>
+<div class="arrow">↓</div>
 
-      <div class="flow-box">
-        Ethers.js Transaction Layer
-      </div>
+<div class="flow-box">
+Ethers.js Transaction Layer
+</div>
 
-      <div class="arrow">↓</div>
+<div class="arrow">↓</div>
 
-      <div class="flow-box">
-        Polygon Smart Contract
-      </div>
+<div class="flow-box">
+Polygon Smart Contract
+</div>
 
-      <div class="arrow">↓</div>
+<div class="arrow">↓</div>
 
-      <div class="flow-box">
-        Automated Revenue Distribution
-      </div>
+<div class="flow-box">
+Automated Revenue Distribution
+</div>
 
-    </div>
+</div>
 
-  </div>
+</div>
 
 </section>
 
@@ -843,93 +931,180 @@ Structuring modular payment architecture for future creator platform integration
 
 </section>
 
+<!-- WHY BLOCKCHAIN -->
+
+<section id="blockchain">
+
+<h1>Why Blockchain?</h1>
+
+<div class="glass">
+
+<div class="feature-grid">
+
+<div class="feature-card">
+<h3>Trustless Execution</h3>
+<p>
+Payment logic executes deterministically through smart contracts without centralized dependency.
+</p>
+</div>
+
+<div class="feature-card">
+<h3>Transparent Auditing</h3>
+<p>
+All transactions remain verifiable and traceable directly on-chain.
+</p>
+</div>
+
+<div class="feature-card">
+<h3>Programmable Finance</h3>
+<p>
+Revenue distribution rules become automated financial infrastructure instead of manual coordination.
+</p>
+</div>
+
+<div class="feature-card">
+<h3>Reduced Intermediaries</h3>
+<p>
+CRE8 minimizes payout friction and removes unnecessary platform dependencies.
+</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
 <!-- PROTOCOL -->
 
 <section id="protocol">
 
-  <h1>Revenue Execution Flow</h1>
+<h1>Revenue Execution Flow</h1>
 
-  <div class="glass">
+<div class="glass">
 
-    <div class="revenue-flow">
+<div class="revenue-flow">
 
-      <div class="flow-node">
-        Creator
-      </div>
+<div class="flow-node">
+Creator
+</div>
 
-      <div class="flow-line"></div>
+<div class="flow-line"></div>
 
-      <div class="flow-node">
-        Smart Contract
-      </div>
+<div class="flow-node">
+Smart Contract
+</div>
 
-      <div class="flow-line"></div>
+<div class="flow-line"></div>
 
-      <div class="flow-node">
-        Collaborator
-      </div>
+<div class="flow-node">
+Collaborator
+</div>
 
-    </div>
+</div>
 
-    <!-- FEED -->
+<!-- FEED -->
 
-    <div class="feed">
+<div class="feed">
 
-      <div class="feed-header">
-        Live Protocol Activity
-      </div>
+<div class="feed-header">
+Live Protocol Activity
+</div>
 
-      <div class="feed-item">
+<div class="feed-item">
 
-        <span>
-          0x81af29e8b1c4d6f... distributed 0.42 POL
-        </span>
+<span>
+0x81af29e8b1c4d6f... distributed 0.42 POL
+</span>
 
-        <span class="feed-status">
-          confirmed
-        </span>
+<span class="feed-status">
+confirmed
+</span>
 
-      </div>
+</div>
 
-      <div class="feed-item">
+<div class="feed-item">
 
-        <span>
-          0x72bc11a9f4d22a1... creator payout executed
-        </span>
+<span>
+0x72bc11a9f4d22a1... creator payout executed
+</span>
 
-        <span class="feed-status">
-          settled
-        </span>
+<span class="feed-status">
+settled
+</span>
 
-      </div>
+</div>
 
-      <div class="feed-item">
+<div class="feed-item">
 
-        <span>
-          0x52fd8ac991d3c77... collaborator revenue synchronized
-        </span>
+<span>
+0x52fd8ac991d3c77... collaborator revenue synchronized
+</span>
 
-        <span class="feed-status">
-          successful
-        </span>
+<span class="feed-status">
+successful
+</span>
 
-      </div>
+</div>
 
-      <div class="feed-item">
+<div class="feed-item">
 
-        <span>
-          0x98af1bb11e92a0d... smart contract distribution completed
-        </span>
+<span>
+0x98af1bb11e92a0d... smart contract distribution completed
+</span>
 
-        <span class="feed-status">
-          verified
-        </span>
+<span class="feed-status">
+verified
+</span>
 
-      </div>
+</div>
 
-    </div>
+</div>
 
-  </div>
+</div>
+
+</section>
+
+<!-- CONTRACT -->
+
+<section id="contract-preview">
+
+<h1>Smart Contract Preview</h1>
+
+<div class="contract-box">
+
+<div class="contract-header">
+<span></span>
+<span></span>
+<span></span>
+</div>
+
+<pre><code>
+
+contract CRE8Distribution {
+
+    function distribute(
+        address creator,
+        address collaborator
+    ) external payable {
+
+        uint256 creatorShare =
+            (msg.value * 80) / 100;
+
+        uint256 collaboratorShare =
+            (msg.value * 20) / 100;
+
+        payable(creator)
+            .transfer(creatorShare);
+
+        payable(collaborator)
+            .transfer(collaboratorShare);
+    }
+}
+
+</code></pre>
+
+</div>
 
 </section>
 
@@ -937,51 +1112,91 @@ Structuring modular payment architecture for future creator platform integration
 
 <section>
 
-  <h1>Built For</h1>
+<h1>Built For</h1>
 
-  <div class="built-grid">
+<div class="built-grid">
 
-    <div class="built-card">
+<div class="built-card">
 
-      <h3>Creators</h3>
+<h3>Creators</h3>
 
-      <p>
-        Instant collaborative revenue distribution for digital creators.
-      </p>
+<p>
+Instant collaborative revenue distribution for digital creators.
+</p>
 
-    </div>
+</div>
 
-    <div class="built-card">
+<div class="built-card">
 
-      <h3>Agencies</h3>
+<h3>Agencies</h3>
 
-      <p>
-        Transparent multi-party payout coordination infrastructure.
-      </p>
+<p>
+Transparent multi-party payout coordination infrastructure.
+</p>
 
-    </div>
+</div>
 
-    <div class="built-card">
+<div class="built-card">
 
-      <h3>DAOs</h3>
+<h3>DAOs</h3>
 
-      <p>
-        Automated treasury and contributor compensation execution.
-      </p>
+<p>
+Automated treasury and contributor compensation execution.
+</p>
 
-    </div>
+</div>
 
-    <div class="built-card">
+<div class="built-card">
 
-      <h3>Platforms</h3>
+<h3>Platforms</h3>
 
-      <p>
-        Modular payment infrastructure for creator ecosystems.
-      </p>
+<p>
+Modular payment infrastructure for creator ecosystems.
+</p>
 
-    </div>
+</div>
 
-  </div>
+</div>
+
+</section>
+
+<!-- DESIGN PRINCIPLES -->
+
+<section id="design-principles">
+
+<h1>System Design Principles</h1>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+<h3>Modular Architecture</h3>
+<p>
+Designed to support extensible creator payment integrations across platforms.
+</p>
+</div>
+
+<div class="feature-card">
+<h3>Low-Latency Execution</h3>
+<p>
+Focused on minimizing payout coordination overhead and transaction friction.
+</p>
+</div>
+
+<div class="feature-card">
+<h3>Deterministic Logic</h3>
+<p>
+Revenue distribution rules execute consistently through programmable smart contracts.
+</p>
+</div>
+
+<div class="feature-card">
+<h3>Scalable Infrastructure</h3>
+<p>
+Structured as reusable payment coordination infrastructure rather than isolated applications.
+</p>
+</div>
+
+</div>
 
 </section>
 
@@ -1029,51 +1244,72 @@ Real-time payout insights, transaction metrics, and revenue visualization.
 
 <section id="demo">
 
-  <h1>Live Protocol Demo</h1>
+<h1>Live Protocol Demo</h1>
 
-  <div class="glass">
+<div class="glass">
 
-    <p>
-      Execute a real blockchain-based revenue distribution transaction
-      using Polygon smart contracts.
-    </p>
+<p>
+Execute a real blockchain-based revenue distribution transaction
+using Polygon smart contracts.
+</p>
 
-    <div class="demo-box">
+<div class="demo-box">
 
-      <button onclick="connect()">
-        Connect Wallet
-      </button>
+<button onclick="connect()">
+Connect Wallet
+</button>
 
-      <p id="wallet"></p>
+<p id="wallet"></p>
 
-      <input
-        id="creator"
-        placeholder="Creator Wallet Address"
-      >
+<input
+id="creator"
+placeholder="Creator Wallet Address"
+>
 
-      <input
-        id="collab"
-        placeholder="Collaborator Wallet Address"
-      >
+<input
+id="collab"
+placeholder="Collaborator Wallet Address"
+>
 
-      <input
-        id="amount"
-        placeholder="Amount (POL)"
-      >
+<input
+id="amount"
+placeholder="Amount (POL)"
+>
 
-      <button onclick="send()">
-        Execute Revenue Distribution
-      </button>
+<button onclick="send()">
+Execute Revenue Distribution
+</button>
 
-      <p id="status"></p>
+<p id="status"></p>
 
-      <a id="txlink" target="_blank"></a>
+<a id="txlink" target="_blank"></a>
 
-    </div>
+</div>
 
-  </div>
+</div>
 
 </section>
+
+<!-- FLOATING -->
+
+<div class="floating-status">
+
+<div class="floating-item">
+<span>STATUS</span>
+<h3>ACTIVE</h3>
+</div>
+
+<div class="floating-item">
+<span>CHAIN</span>
+<h3>POLYGON</h3>
+</div>
+
+<div class="floating-item">
+<span>TX/s</span>
+<h3 id="txCounter">142</h3>
+</div>
+
+</div>
 
 <footer>
 
@@ -1085,103 +1321,298 @@ Built with Solidity, Polygon, Ethers.js & JavaScript
 
 function scrollToDemo(){
 
-  document.getElementById("demo")
-  .scrollIntoView({
-    behavior:"smooth"
-  });
+document.getElementById("demo")
+.scrollIntoView({
+behavior:"smooth"
+});
 
 }
+
+/* TYPEWRITER */
+
+const terminalLines = [
+"> initializing protocol...",
+"> verifying smart contract...",
+"> wallet authenticated",
+"> distribution engine active",
+"✓ payment successfully distributed"
+];
+
+const terminal =
+document.querySelector(".terminal-content");
+
+let lineIndex = 0;
+let charIndex = 0;
+
+function typeLine(){
+
+if(lineIndex >= terminalLines.length){
+return;
+}
+
+const current =
+terminalLines[lineIndex];
+
+if(charIndex < current.length){
+
+if(!terminal.children[lineIndex]){
+
+const p =
+document.createElement("p");
+
+if(current.includes("✓")){
+p.classList.add("success");
+}
+
+terminal.appendChild(p);
+
+}
+
+terminal.children[lineIndex].innerHTML +=
+current.charAt(charIndex);
+
+charIndex++;
+
+setTimeout(typeLine,35);
+
+}
+
+else{
+
+lineIndex++;
+charIndex = 0;
+
+setTimeout(typeLine,300);
+
+}
+
+}
+
+typeLine();
+
+/* FEED */
+
+const feed =
+document.querySelector(".feed");
+
+const feedMessages = [
+"creator payout synchronized",
+"smart contract execution completed",
+"collaborator settlement confirmed",
+"distribution batch processed",
+"protocol transaction verified"
+];
+
+function randomHash(){
+
+const chars =
+"abcdef1234567890";
+
+let hash = "0x";
+
+for(let i=0;i<16;i++){
+
+hash +=
+chars[Math.floor(Math.random()*chars.length)];
+
+}
+
+return hash;
+
+}
+
+function addFeedItem(){
+
+const item =
+document.createElement("div");
+
+item.className = "feed-item";
+
+const amount =
+(Math.random()*2).toFixed(2);
+
+item.innerHTML = `
+<span>
+${randomHash()}... ${feedMessages[Math.floor(Math.random()*feedMessages.length)]} ${amount} POL
+</span>
+
+<span class="feed-status">
+confirmed
+</span>
+`;
+
+feed.appendChild(item);
+
+if(feed.children.length > 7){
+
+feed.removeChild(feed.children[1]);
+
+}
+
+}
+
+setInterval(addFeedItem,2500);
+
+/* GAS */
+
+const gas =
+document.getElementById("gasValue");
+
+setInterval(()=>{
+
+const value =
+28 + Math.floor(Math.random()*10);
+
+gas.innerText =
+value + " Gwei";
+
+},4000);
+
+/* TX COUNTER */
+
+let tx = 142;
+
+setInterval(()=>{
+
+tx += Math.floor(Math.random()*3);
+
+document.getElementById("txCounter")
+.innerText = tx;
+
+},3000);
+
+/* WALLET */
 
 let signer;
 
 async function connect(){
 
-  try{
+try{
 
-    if(!window.ethereum){
-      alert("MetaMask not installed");
-      return;
-    }
+if(!window.ethereum){
+alert("MetaMask not installed");
+return;
+}
 
-    await window.ethereum.request({
-      method:'eth_requestAccounts'
-    });
+await window.ethereum.request({
+method:'eth_requestAccounts'
+});
 
-    const provider =
-      new ethers.BrowserProvider(window.ethereum);
+const provider =
+new ethers.BrowserProvider(window.ethereum);
 
-    signer = await provider.getSigner();
+signer = await provider.getSigner();
 
-    const address = await signer.getAddress();
+const address =
+await signer.getAddress();
 
-    document.getElementById("wallet").innerHTML =
-      "✅ Wallet Connected<br><br>" + address;
-
-  }
-
-  catch(err){
-
-    alert("Connection failed");
-
-  }
+document.getElementById("wallet").innerHTML =
+"✅ Wallet Connected<br><br>" + address;
 
 }
+
+catch(err){
+
+alert("Connection failed");
+
+}
+
+}
+
+/* CONTRACT */
 
 const contractAddress =
 "0x23a88bf4a77cf2d78427117238488d824de3804b";
 
 const abi = [
-  "function distribute(address,address) payable"
+"function distribute(address,address) payable"
 ];
+
+/* SEND */
 
 async function send(){
 
-  try{
+try{
 
-    document.getElementById("status").innerHTML =
-      "⏳ Processing blockchain transaction...";
+document.getElementById("status").innerHTML =
+"⏳ Processing blockchain transaction...";
 
-    const creator =
-      document.getElementById("creator").value;
+const creator =
+document.getElementById("creator").value;
 
-    const collab =
-      document.getElementById("collab").value;
+const collab =
+document.getElementById("collab").value;
 
-    const amount =
-      document.getElementById("amount").value;
+const amount =
+document.getElementById("amount").value;
 
-    const contract =
-      new ethers.Contract(contractAddress, abi, signer);
+const contract =
+new ethers.Contract(contractAddress, abi, signer);
 
-    const tx = await contract.distribute(
-      creator,
-      collab,
-      {
-        value: ethers.parseEther(amount)
-      }
-    );
+const tx = await contract.distribute(
+creator,
+collab,
+{
+value: ethers.parseEther(amount)
+}
+);
 
-    await tx.wait();
+await tx.wait();
 
-    document.getElementById("status").innerHTML =
-      "✅ Revenue distributed successfully.";
+document.getElementById("status").innerHTML =
+"✅ Revenue distributed successfully.";
 
-    document.getElementById("txlink").href =
-      "https://amoy.polygonscan.com/tx/" + tx.hash;
+document.getElementById("txlink").href =
+"https://amoy.polygonscan.com/tx/" + tx.hash;
 
-    document.getElementById("txlink").innerText =
-      "View Transaction on PolygonScan";
-
-  }
-
-  catch(err){
-
-    document.getElementById("status").innerHTML =
-      "❌ Transaction failed.";
-
-  }
+document.getElementById("txlink").innerText =
+"View Transaction on PolygonScan";
 
 }
+
+catch(err){
+
+document.getElementById("status").innerHTML =
+"❌ Transaction failed.";
+
+}
+
+}
+
+/* SCROLL REVEAL */
+
+const reveals =
+document.querySelectorAll("section");
+
+function revealSections(){
+
+reveals.forEach(sec=>{
+
+const top =
+sec.getBoundingClientRect().top;
+
+if(top < window.innerHeight - 80){
+
+sec.style.opacity = "1";
+sec.style.transform = "translateY(0px)";
+
+}
+
+});
+
+}
+
+reveals.forEach(sec=>{
+
+sec.style.opacity = "0";
+sec.style.transform = "translateY(40px)";
+sec.style.transition = "all 0.8s ease";
+
+});
+
+window.addEventListener("scroll",revealSections);
+
+revealSections();
 
 </script>
 
