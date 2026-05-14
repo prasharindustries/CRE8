@@ -67,7 +67,7 @@ body{
   }
 }
 
-/* NAVBAR */
+/* NAV */
 
 nav{
   position:fixed;
@@ -227,6 +227,33 @@ button:hover{
   color:#4ade80;
 }
 
+/* STATUS DASHBOARD */
+
+.protocol-status{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:18px;
+  margin-top:35px;
+}
+
+.status-item{
+  padding:22px;
+  border-radius:20px;
+  background:#090909;
+  border:1px solid rgba(255,255,255,0.06);
+}
+
+.status-item span{
+  color:#9ca3af;
+  font-size:12px;
+  letter-spacing:1px;
+}
+
+.status-item h3{
+  margin-top:10px;
+  font-size:24px;
+}
+
 /* STATS */
 
 .stats{
@@ -360,7 +387,7 @@ button:hover{
   }
 }
 
-/* TRANSACTION FEED */
+/* FEED */
 
 .feed{
   margin-top:45px;
@@ -411,6 +438,20 @@ button:hover{
 
 .built-card h3{
   margin-bottom:14px;
+}
+
+/* ROADMAP */
+
+.roadmap{
+  margin-top:40px;
+}
+
+.roadmap-item{
+  padding:24px;
+  border-left:3px solid #ff4444;
+  margin-bottom:24px;
+  background:#070707;
+  border-radius:0 18px 18px 0;
 }
 
 /* DEMO */
@@ -524,6 +565,7 @@ footer{
     <a href="#features">Features</a>
     <a href="#architecture">Architecture</a>
     <a href="#protocol">Protocol</a>
+    <a href="#roadmap">Roadmap</a>
     <a href="#demo">Demo</a>
 
     <a
@@ -570,6 +612,32 @@ footer{
         >
           View GitHub
         </button>
+
+      </div>
+
+      <!-- STATUS -->
+
+      <div class="protocol-status">
+
+        <div class="status-item">
+          <span>STATUS</span>
+          <h3>ACTIVE</h3>
+        </div>
+
+        <div class="status-item">
+          <span>CHAIN</span>
+          <h3>POLYGON</h3>
+        </div>
+
+        <div class="status-item">
+          <span>CONTRACT</span>
+          <h3>VERIFIED</h3>
+        </div>
+
+        <div class="status-item">
+          <span>UPTIME</span>
+          <h3>99.99%</h3>
+        </div>
 
       </div>
 
@@ -735,7 +803,47 @@ footer{
 
 </section>
 
-<!-- PROTOCOL FLOW -->
+<!-- ENGINEERING CHALLENGES -->
+
+<section>
+
+<h1>Engineering Challenges</h1>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+<h3>Deterministic Revenue Logic</h3>
+<p>
+Ensuring revenue splits execute accurately and transparently across all participants.
+</p>
+</div>
+
+<div class="feature-card">
+<h3>Blockchain Latency</h3>
+<p>
+Handling asynchronous transaction confirmation and wallet synchronization.
+</p>
+</div>
+
+<div class="feature-card">
+<h3>Smart Contract Security</h3>
+<p>
+Designing secure payment execution logic with minimized trust assumptions.
+</p>
+</div>
+
+<div class="feature-card">
+<h3>Scalable Infrastructure</h3>
+<p>
+Structuring modular payment architecture for future creator platform integrations.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- PROTOCOL -->
 
 <section id="protocol">
 
@@ -763,7 +871,7 @@ footer{
 
     </div>
 
-    <!-- TRANSACTION FEED -->
+    <!-- FEED -->
 
     <div class="feed">
 
@@ -774,7 +882,7 @@ footer{
       <div class="feed-item">
 
         <span>
-          0x81af... distributed 0.42 POL
+          0x81af29e8b1c4d6f... distributed 0.42 POL
         </span>
 
         <span class="feed-status">
@@ -786,7 +894,7 @@ footer{
       <div class="feed-item">
 
         <span>
-          creator payout executed
+          0x72bc11a9f4d22a1... creator payout executed
         </span>
 
         <span class="feed-status">
@@ -798,7 +906,7 @@ footer{
       <div class="feed-item">
 
         <span>
-          collaborator revenue synchronized
+          0x52fd8ac991d3c77... collaborator revenue synchronized
         </span>
 
         <span class="feed-status">
@@ -810,7 +918,7 @@ footer{
       <div class="feed-item">
 
         <span>
-          smart contract distribution completed
+          0x98af1bb11e92a0d... smart contract distribution completed
         </span>
 
         <span class="feed-status">
@@ -874,6 +982,46 @@ footer{
     </div>
 
   </div>
+
+</section>
+
+<!-- ROADMAP -->
+
+<section id="roadmap">
+
+<h1>Future Roadmap</h1>
+
+<div class="roadmap">
+
+<div class="roadmap-item">
+<h3>Multi-Party Revenue Distribution</h3>
+<p>
+Support dynamic revenue allocation across multiple collaborators and teams.
+</p>
+</div>
+
+<div class="roadmap-item">
+<h3>Subscription-Based Creator Payments</h3>
+<p>
+Enable recurring programmable payment infrastructure for creator memberships.
+</p>
+</div>
+
+<div class="roadmap-item">
+<h3>Cross-Chain Settlement</h3>
+<p>
+Expand protocol compatibility beyond Polygon for scalable Web3 integrations.
+</p>
+</div>
+
+<div class="roadmap-item">
+<h3>Creator Analytics Dashboard</h3>
+<p>
+Real-time payout insights, transaction metrics, and revenue visualization.
+</p>
+</div>
+
+</div>
 
 </section>
 
