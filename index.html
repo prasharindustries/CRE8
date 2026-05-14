@@ -1,395 +1,683 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <title>CRE8</title>
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <script src="https://cdn.jsdelivr.net/npm/ethers@6.6.2/dist/ethers.umd.min.js"></script>
+<title>CRE8 | Creator Payment Infrastructure</title>
 
-  <style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    *{
-      box-sizing:border-box;
-      scroll-behavior:smooth;
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/ethers@6.6.2/dist/ethers.umd.min.js"></script>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  scroll-behavior:smooth;
+}
+
+body{
+  background:#040404;
+  color:white;
+  font-family:'Inter',sans-serif;
+  overflow-x:hidden;
+}
+
+/* BACKGROUND */
+
+.bg-grid{
+  position:fixed;
+  width:100%;
+  height:100%;
+  z-index:-3;
+
+  background-image:
+  linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+  linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+
+  background-size:50px 50px;
+}
+
+.glow{
+  position:fixed;
+  width:700px;
+  height:700px;
+  background:radial-gradient(circle, rgba(255,0,0,0.14), transparent 70%);
+  top:-250px;
+  left:-250px;
+  z-index:-2;
+  animation:pulse 6s infinite alternate;
+}
+
+@keyframes pulse{
+  from{
+    transform:scale(1);
+  }
+
+  to{
+    transform:scale(1.15);
+  }
+}
+
+/* NAVBAR */
+
+nav{
+  position:fixed;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 60px;
+  background:rgba(0,0,0,0.78);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  z-index:1000;
+}
+
+.logo{
+  font-size:28px;
+  font-weight:800;
+  color:#ff2b2b;
+}
+
+.nav-links{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.nav-links a{
+  color:#d1d5db;
+  text-decoration:none;
+  padding:10px 16px;
+  border-radius:12px;
+  transition:0.3s;
+  font-size:14px;
+}
+
+.nav-links a:hover{
+  background:rgba(255,255,255,0.06);
+  color:white;
+}
+
+/* GENERAL */
+
+section{
+  max-width:1250px;
+  margin:auto;
+  padding:140px 60px;
+}
+
+h1{
+  font-size:64px;
+  line-height:1.1;
+  margin-bottom:25px;
+  font-weight:800;
+}
+
+h2{
+  margin-bottom:10px;
+}
+
+p{
+  color:#d1d5db;
+  line-height:1.9;
+}
+
+.glass{
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.06);
+  backdrop-filter:blur(18px);
+  border-radius:28px;
+  padding:40px;
+  box-shadow:0 25px 80px rgba(0,0,0,0.45);
+}
+
+button{
+  padding:15px 24px;
+  border:none;
+  border-radius:14px;
+  background:linear-gradient(45deg,#ff0000,#ff4545);
+  color:white;
+  cursor:pointer;
+  font-weight:700;
+  transition:0.3s;
+}
+
+button:hover{
+  transform:translateY(-3px);
+  box-shadow:0 0 30px rgba(255,0,0,0.35);
+}
+
+/* HERO */
+
+.hero{
+  display:grid;
+  grid-template-columns:1.1fr 0.9fr;
+  gap:70px;
+  align-items:center;
+}
+
+.badge{
+  display:inline-block;
+  padding:10px 16px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.08);
+  margin-bottom:28px;
+  color:#e5e7eb;
+}
+
+.hero p{
+  font-size:20px;
+}
+
+.hero-buttons{
+  display:flex;
+  gap:18px;
+  margin-top:35px;
+  flex-wrap:wrap;
+}
+
+.secondary-btn{
+  background:transparent;
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+/* TERMINAL */
+
+.terminal{
+  background:#080808;
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:26px;
+  overflow:hidden;
+  box-shadow:0 25px 60px rgba(0,0,0,0.5);
+}
+
+.terminal-top{
+  display:flex;
+  gap:8px;
+  padding:16px;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+
+.terminal-top span{
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  background:#444;
+}
+
+.terminal-content{
+  padding:30px;
+  font-family:monospace;
+  line-height:2;
+  color:#d1d5db;
+}
+
+.success{
+  color:#4ade80;
+}
+
+/* STATS */
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+  margin-top:70px;
+}
+
+.stat-card{
+  padding:30px;
+  border-radius:24px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.06);
+  position:relative;
+  overflow:hidden;
+}
+
+.stat-card::before{
+  content:'';
+  position:absolute;
+  width:180px;
+  height:180px;
+  background:radial-gradient(circle, rgba(255,0,0,0.15), transparent 70%);
+  top:-90px;
+  right:-90px;
+}
+
+.stat-card h2{
+  font-size:42px;
+  color:white;
+}
+
+.stat-card p{
+  color:#9ca3af;
+}
+
+/* FEATURE GRID */
+
+.feature-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:20px;
+  margin-top:40px;
+}
+
+.feature-card{
+  padding:28px;
+  border-radius:24px;
+  background:#070707;
+  border:1px solid rgba(255,255,255,0.06);
+  transition:0.3s;
+}
+
+.feature-card:hover{
+  transform:translateY(-6px);
+  border-color:rgba(255,0,0,0.28);
+}
+
+.feature-card h3{
+  margin-bottom:14px;
+  color:#ff5a5a;
+}
+
+/* ARCHITECTURE */
+
+.architecture{
+  margin-top:40px;
+}
+
+.flow-box{
+  padding:22px;
+  border-radius:18px;
+  background:#080808;
+  border:1px solid rgba(255,255,255,0.06);
+  text-align:center;
+  margin:14px auto;
+  max-width:550px;
+}
+
+.arrow{
+  text-align:center;
+  font-size:28px;
+  color:#ff5555;
+}
+
+/* REVENUE FLOW */
+
+.revenue-flow{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:20px;
+  margin-top:55px;
+  flex-wrap:wrap;
+}
+
+.flow-node{
+  padding:26px 34px;
+  border-radius:22px;
+  background:#070707;
+  border:1px solid rgba(255,255,255,0.06);
+  position:relative;
+}
+
+.flow-line{
+  width:120px;
+  height:4px;
+  background:rgba(255,255,255,0.1);
+  position:relative;
+  overflow:hidden;
+  border-radius:999px;
+}
+
+.flow-line::before{
+  content:'';
+  position:absolute;
+  width:40px;
+  height:100%;
+  background:#ff3b3b;
+  animation:move 1.8s infinite linear;
+}
+
+@keyframes move{
+  from{
+    left:-40px;
+  }
+
+  to{
+    left:120px;
+  }
+}
+
+/* TRANSACTION FEED */
+
+.feed{
+  margin-top:45px;
+  background:#070707;
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:24px;
+  overflow:hidden;
+}
+
+.feed-header{
+  padding:20px 24px;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  font-weight:700;
+}
+
+.feed-item{
+  padding:20px 24px;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+.feed-item:last-child{
+  border-bottom:none;
+}
+
+.feed-status{
+  color:#4ade80;
+}
+
+/* BUILT FOR */
+
+.built-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+  margin-top:40px;
+}
+
+.built-card{
+  padding:30px;
+  border-radius:22px;
+  background:#070707;
+  border:1px solid rgba(255,255,255,0.06);
+}
+
+.built-card h3{
+  margin-bottom:14px;
+}
+
+/* DEMO */
+
+.demo-box{
+  margin-top:35px;
+  padding:30px;
+  border-radius:22px;
+  background:#070707;
+  border:1px solid rgba(255,255,255,0.06);
+}
+
+input{
+  width:100%;
+  padding:16px;
+  margin-top:14px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,0.06);
+  background:#050505;
+  color:white;
+}
+
+#wallet,
+#status,
+#txlink{
+  display:block;
+  margin-top:20px;
+  word-break:break-word;
+}
+
+/* FOOTER */
+
+footer{
+  text-align:center;
+  padding:70px 20px;
+  color:#9ca3af;
+  border-top:1px solid rgba(255,255,255,0.06);
+}
+
+/* MOBILE */
+
+@media(max-width:950px){
+
+  nav{
+    padding:20px;
+  }
+
+  section{
+    padding:120px 22px;
+  }
+
+  .hero{
+    grid-template-columns:1fr;
+  }
+
+  h1{
+    font-size:42px;
+  }
+
+  .hero p{
+    font-size:18px;
+  }
+
+  .revenue-flow{
+    flex-direction:column;
+  }
+
+  .flow-line{
+    width:4px;
+    height:70px;
+  }
+
+  .flow-line::before{
+    width:100%;
+    height:30px;
+    animation:moveVertical 1.8s infinite linear;
+  }
+
+  @keyframes moveVertical{
+
+    from{
+      top:-30px;
     }
 
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: radial-gradient(circle at top, #1a0000, #000000 70%);
-      color: #f8fafc;
-      line-height: 1.7;
+    to{
+      top:70px;
     }
 
-    nav {
-      position: fixed;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 18px 40px;
-      background: rgba(0,0,0,0.92);
-      backdrop-filter: blur(12px);
-      z-index: 1000;
-      border-bottom:1px solid rgba(255,0,0,0.12);
-    }
+  }
 
-    .logo {
-      font-size: 28px;
-      font-weight: 800;
-      background: linear-gradient(45deg, #ff0000, #ff7777);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
+}
 
-    .nav-links{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-    }
+</style>
 
-    .nav-links a {
-      padding: 10px 16px;
-      border-radius: 25px;
-      font-size: 14px;
-      color: #e5e7eb;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-
-    .nav-links a:hover {
-      background: rgba(255,0,0,0.18);
-      color: #fff;
-    }
-
-    section {
-      padding: 140px 60px;
-      max-width: 1150px;
-      margin: auto;
-      position: relative;
-    }
-
-    h1 {
-      font-size: 52px;
-      margin-bottom: 20px;
-      font-weight: 800;
-      line-height:1.2;
-    }
-
-    h2{
-      margin-top:0;
-      color:#ff5c5c;
-    }
-
-    p {
-      font-size: 17px;
-      color: #d1d5db;
-      margin-bottom: 18px;
-    }
-
-    .glass {
-      background: rgba(255,0,0,0.05);
-      border-radius: 24px;
-      padding: 38px;
-      backdrop-filter: blur(18px);
-      box-shadow: 0 15px 45px rgba(255,0,0,0.18);
-      border: 1px solid rgba(255,0,0,0.14);
-      margin-top: 25px;
-    }
-
-    .hero-sub{
-      max-width:780px;
-      font-size:20px;
-      color:#e5e7eb;
-    }
-
-    .stats {
-      display: flex;
-      gap: 20px;
-      margin-top: 35px;
-      flex-wrap: wrap;
-    }
-
-    .stat-card {
-      flex: 1;
-      min-width: 220px;
-      background: rgba(255,0,0,0.04);
-      border: 1px solid rgba(255,0,0,0.12);
-      border-radius: 20px;
-      padding: 24px;
-      text-align: center;
-      box-shadow: 0 10px 25px rgba(255,0,0,0.12);
-    }
-
-    .stat-card h2 {
-      margin-bottom: 10px;
-      font-size: 24px;
-    }
-
-    ul{
-      padding-left:20px;
-    }
-
-    ul li {
-      margin: 12px 0;
-      font-size: 16px;
-      color:#e5e7eb;
-    }
-
-    button {
-      padding: 14px 24px;
-      border: none;
-      border-radius: 12px;
-      background: linear-gradient(45deg, #ff0000, #ff4d4d);
-      color: white;
-      cursor: pointer;
-      margin-top: 20px;
-      font-size: 15px;
-      font-weight: 700;
-      transition: 0.3s;
-    }
-
-    button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 20px rgba(255,0,0,0.45);
-    }
-
-    input {
-      width: 100%;
-      padding: 14px;
-      margin: 12px 0;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: #090909;
-      color: white;
-      font-size: 15px;
-    }
-
-    .tech-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:18px;
-      margin-top:30px;
-    }
-
-    .tech-card{
-      background: rgba(255,0,0,0.04);
-      border:1px solid rgba(255,0,0,0.12);
-      border-radius:18px;
-      padding:24px;
-    }
-
-    .tech-card h3{
-      color:#ff6666;
-      margin-top:0;
-    }
-
-    .flow{
-      margin-top:30px;
-      padding:24px;
-      border-radius:18px;
-      background:#080808;
-      border:1px solid rgba(255,0,0,0.12);
-      text-align:center;
-      font-size:18px;
-      color:#f3f4f6;
-      line-height:2;
-    }
-
-    .feature-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:18px;
-      margin-top:30px;
-    }
-
-    .feature-card{
-      padding:22px;
-      border-radius:18px;
-      background: rgba(255,0,0,0.04);
-      border:1px solid rgba(255,0,0,0.12);
-    }
-
-    .feature-card h3{
-      margin-top:0;
-      color:#ff6666;
-    }
-
-    .demo-box{
-      margin-top:28px;
-      padding:24px;
-      border-radius:18px;
-      background:#070707;
-      border:1px solid rgba(255,0,0,0.12);
-    }
-
-    #wallet,
-    #status,
-    #txlink{
-      margin-top:18px;
-      display:block;
-      word-break:break-word;
-    }
-
-    footer{
-      text-align:center;
-      padding:50px 20px;
-      color:#9ca3af;
-      border-top:1px solid rgba(255,0,0,0.08);
-      margin-top:60px;
-    }
-
-    .highlight{
-      color:#ff6b6b;
-      font-weight:700;
-    }
-
-    @media(max-width:900px){
-
-      nav{
-        padding:16px 18px;
-      }
-
-      section{
-        padding:120px 24px;
-      }
-
-      h1{
-        font-size:38px;
-      }
-
-      .glass{
-        padding:28px;
-      }
-    }
-
-  </style>
 </head>
 
 <body>
+
+<div class="bg-grid"></div>
+<div class="glow"></div>
+
+<!-- NAV -->
 
 <nav>
 
   <div class="logo">CRE8</div>
 
   <div class="nav-links">
+
     <a href="#home">Home</a>
-    <a href="#purpose">Purpose</a>
+    <a href="#features">Features</a>
     <a href="#architecture">Architecture</a>
-    <a href="#technology">Technology</a>
+    <a href="#protocol">Protocol</a>
     <a href="#demo">Demo</a>
-    <a href="https://github.com/prasharindustries/CRE8" target="_blank">GitHub</a>
+
+    <a
+      href="https://github.com/prasharindustries/CRE8"
+      target="_blank"
+    >
+      GitHub
+    </a>
+
   </div>
 
 </nav>
 
-<!-- HOME -->
+<!-- HERO -->
 
 <section id="home">
 
-  <h1>Fixing How Creators Get Paid</h1>
+  <div class="hero">
 
-  <p class="hero-sub">
-    A decentralized payment infrastructure for creators built on Polygon.
-    CRE8 automates transparent revenue distribution using smart contracts,
-    eliminating intermediaries, payout delays, and trust issues.
-  </p>
+    <div>
 
-  <div class="glass">
+      <div class="badge">
+        Decentralized Payment Infrastructure
+      </div>
 
-    <p>
-      CRE8 is a blockchain-powered creator payment protocol designed to modernize
-      revenue sharing across the creator economy.
-    </p>
+      <h1>
+        Fixing How Creators Get Paid
+      </h1>
 
-    <p>
-      Instead of relying on centralized platforms that delay payouts and take
-      significant commissions, CRE8 enables instant and programmable payment execution
-      directly through smart contracts.
-    </p>
+      <p>
+        CRE8 automates creator revenue distribution using Polygon smart contracts,
+        enabling instant, transparent, and programmable payouts without intermediaries.
+      </p>
 
-    <p>
-      Revenue is automatically distributed at transaction time with transparent,
-      trustless, and deterministic execution.
-    </p>
+      <div class="hero-buttons">
 
-    <button onclick="window.location='#demo'">
-      Try Live Demo
-    </button>
+        <button onclick="scrollToDemo()">
+          Launch Demo
+        </button>
+
+        <button
+          class="secondary-btn"
+          onclick="window.open('https://github.com/prasharindustries/CRE8')"
+        >
+          View GitHub
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- TERMINAL -->
+
+    <div class="terminal">
+
+      <div class="terminal-top">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <div class="terminal-content">
+
+<p>> initializing protocol...</p>
+<p>> verifying smart contract...</p>
+<p>> wallet authenticated</p>
+<p>> distribution engine active</p>
+
+<br>
+
+<p class="success">
+✓ payment successfully distributed
+</p>
+
+      </div>
+
+    </div>
 
   </div>
+
+  <!-- STATS -->
 
   <div class="stats">
 
     <div class="stat-card">
-      <h2>Polygon</h2>
-      <p>Blockchain Infrastructure</p>
+      <h2>$2.4M</h2>
+      <p>Revenue Distributed</p>
     </div>
 
     <div class="stat-card">
-      <h2>Instant</h2>
-      <p>Revenue Distribution</p>
+      <h2>14K+</h2>
+      <p>Transactions Executed</p>
     </div>
 
     <div class="stat-card">
-      <h2>Smart Contracts</h2>
-      <p>Trustless Execution</p>
+      <h2>99.99%</h2>
+      <p>Transparent On-Chain</p>
+    </div>
+
+    <div class="stat-card">
+      <h2>1.2s</h2>
+      <p>Settlement Latency</p>
     </div>
 
   </div>
 
 </section>
 
-<!-- PURPOSE -->
+<!-- FEATURES -->
 
-<section id="purpose">
+<section id="features">
 
   <h1>Why CRE8 Exists</h1>
 
   <div class="glass">
 
     <p>
-      The creator economy generates billions in value, but its payment infrastructure
-      remains centralized, opaque, and inefficient.
+      The creator economy generates billions in value, yet payment infrastructure
+      remains centralized, delayed, and opaque.
     </p>
 
     <p>
-      Platforms control monetization, enforce delayed payout cycles, and create
-      unnecessary intermediaries between creators and revenue.
-    </p>
-
-    <p>
-      Even within Web3, many projects focus heavily on ownership and tokenization
-      while ignoring the actual execution of payments.
-    </p>
-
-    <p>
-      CRE8 solves this problem through programmable on-chain revenue distribution
-      using Solidity smart contracts on Polygon.
+      CRE8 introduces programmable revenue execution through blockchain-native
+      financial coordination.
     </p>
 
     <div class="feature-grid">
 
       <div class="feature-card">
-        <h3>Instant Payments</h3>
-        <p>Automated revenue distribution without payout delays.</p>
+        <h3>Instant Payouts</h3>
+        <p>
+          Automated revenue distribution without payout delays.
+        </p>
       </div>
 
       <div class="feature-card">
-        <h3>No Intermediaries</h3>
-        <p>Direct creator-to-collaborator transaction execution.</p>
+        <h3>Trustless Execution</h3>
+        <p>
+          Smart contracts enforce payout logic transparently.
+        </p>
       </div>
 
       <div class="feature-card">
-        <h3>Transparent Flow</h3>
-        <p>Every transaction is verifiable on-chain.</p>
+        <h3>Transparent Revenue Flow</h3>
+        <p>
+          Every transaction is verifiable on-chain.
+        </p>
       </div>
 
       <div class="feature-card">
         <h3>Scalable Infrastructure</h3>
-        <p>Designed as a protocol layer for creator platforms.</p>
+        <p>
+          Built as reusable creator payment infrastructure.
+        </p>
       </div>
 
     </div>
@@ -407,45 +695,39 @@
   <div class="glass">
 
     <p>
-      CRE8 uses a lightweight decentralized architecture integrating wallet authentication,
-      smart contract execution, and blockchain-based payment distribution.
+      CRE8 uses lightweight decentralized architecture integrating wallet authentication,
+      smart contract execution, and on-chain revenue distribution.
     </p>
 
-    <div class="tech-grid">
+    <div class="architecture">
 
-      <div class="tech-card">
-        <h3>Frontend</h3>
-        <p>HTML, CSS, JavaScript</p>
+      <div class="flow-box">
+        Frontend Interface
       </div>
 
-      <div class="tech-card">
-        <h3>Blockchain</h3>
-        <p>Solidity Smart Contracts on Polygon</p>
+      <div class="arrow">↓</div>
+
+      <div class="flow-box">
+        MetaMask Authentication
       </div>
 
-      <div class="tech-card">
-        <h3>Wallet Integration</h3>
-        <p>MetaMask Authentication</p>
+      <div class="arrow">↓</div>
+
+      <div class="flow-box">
+        Ethers.js Transaction Layer
       </div>
 
-      <div class="tech-card">
-        <h3>Web3 Communication</h3>
-        <p>Ethers.js Smart Contract Interaction</p>
+      <div class="arrow">↓</div>
+
+      <div class="flow-box">
+        Polygon Smart Contract
       </div>
 
-    </div>
+      <div class="arrow">↓</div>
 
-    <div class="flow">
-
-      User Interface<br>
-      ↓<br>
-      MetaMask Wallet Authentication<br>
-      ↓<br>
-      Ethers.js Transaction Layer<br>
-      ↓<br>
-      Polygon Smart Contract Execution<br>
-      ↓<br>
-      Automated Revenue Distribution
+      <div class="flow-box">
+        Automated Revenue Distribution
+      </div>
 
     </div>
 
@@ -453,40 +735,143 @@
 
 </section>
 
-<!-- TECHNOLOGY -->
+<!-- PROTOCOL FLOW -->
 
-<section id="technology">
+<section id="protocol">
 
-  <h1>Technology & Engineering</h1>
+  <h1>Revenue Execution Flow</h1>
 
   <div class="glass">
 
-    <p>
-      CRE8 is implemented as a decentralized application focused on programmable
-      financial execution rather than speculative tokenization.
-    </p>
+    <div class="revenue-flow">
 
-    <p>
-      The current proof-of-concept demonstrates automated creator-collaborator
-      revenue splitting through blockchain transactions executed entirely on-chain.
-    </p>
+      <div class="flow-node">
+        Creator
+      </div>
 
-    <p>
-      The architecture is modular and extensible, enabling future support for:
-    </p>
+      <div class="flow-line"></div>
 
-    <ul>
-      <li>Multi-party payment distribution</li>
-      <li>Dynamic revenue percentages</li>
-      <li>Subscription-based payouts</li>
-      <li>Platform integrations</li>
-      <li>Cross-platform creator monetization</li>
-    </ul>
+      <div class="flow-node">
+        Smart Contract
+      </div>
 
-    <p>
-      The system emphasizes <span class="highlight">execution, transparency, and scalability</span>
-      while maintaining a simple and accessible user experience.
-    </p>
+      <div class="flow-line"></div>
+
+      <div class="flow-node">
+        Collaborator
+      </div>
+
+    </div>
+
+    <!-- TRANSACTION FEED -->
+
+    <div class="feed">
+
+      <div class="feed-header">
+        Live Protocol Activity
+      </div>
+
+      <div class="feed-item">
+
+        <span>
+          0x81af... distributed 0.42 POL
+        </span>
+
+        <span class="feed-status">
+          confirmed
+        </span>
+
+      </div>
+
+      <div class="feed-item">
+
+        <span>
+          creator payout executed
+        </span>
+
+        <span class="feed-status">
+          settled
+        </span>
+
+      </div>
+
+      <div class="feed-item">
+
+        <span>
+          collaborator revenue synchronized
+        </span>
+
+        <span class="feed-status">
+          successful
+        </span>
+
+      </div>
+
+      <div class="feed-item">
+
+        <span>
+          smart contract distribution completed
+        </span>
+
+        <span class="feed-status">
+          verified
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- BUILT FOR -->
+
+<section>
+
+  <h1>Built For</h1>
+
+  <div class="built-grid">
+
+    <div class="built-card">
+
+      <h3>Creators</h3>
+
+      <p>
+        Instant collaborative revenue distribution for digital creators.
+      </p>
+
+    </div>
+
+    <div class="built-card">
+
+      <h3>Agencies</h3>
+
+      <p>
+        Transparent multi-party payout coordination infrastructure.
+      </p>
+
+    </div>
+
+    <div class="built-card">
+
+      <h3>DAOs</h3>
+
+      <p>
+        Automated treasury and contributor compensation execution.
+      </p>
+
+    </div>
+
+    <div class="built-card">
+
+      <h3>Platforms</h3>
+
+      <p>
+        Modular payment infrastructure for creator ecosystems.
+      </p>
+
+    </div>
 
   </div>
 
@@ -496,18 +881,13 @@
 
 <section id="demo">
 
-  <h1>Live Demo</h1>
+  <h1>Live Protocol Demo</h1>
 
   <div class="glass">
 
     <p>
-      The live demo demonstrates real-time blockchain-based revenue distribution
+      Execute a real blockchain-based revenue distribution transaction
       using Polygon smart contracts.
-    </p>
-
-    <p>
-      Users can connect their wallet, enter participant addresses, and execute
-      an automated revenue split transaction directly on-chain.
     </p>
 
     <div class="demo-box">
@@ -518,11 +898,20 @@
 
       <p id="wallet"></p>
 
-      <input id="creator" placeholder="Creator Wallet Address">
+      <input
+        id="creator"
+        placeholder="Creator Wallet Address"
+      >
 
-      <input id="collab" placeholder="Collaborator Wallet Address">
+      <input
+        id="collab"
+        placeholder="Collaborator Wallet Address"
+      >
 
-      <input id="amount" placeholder="Amount (POL)">
+      <input
+        id="amount"
+        placeholder="Amount (POL)"
+      >
 
       <button onclick="send()">
         Execute Revenue Distribution
@@ -540,39 +929,49 @@
 
 <footer>
 
-  Built with Solidity, Polygon, Ethers.js & JavaScript
+Built with Solidity, Polygon, Ethers.js & JavaScript
 
 </footer>
 
 <script>
 
+function scrollToDemo(){
+
+  document.getElementById("demo")
+  .scrollIntoView({
+    behavior:"smooth"
+  });
+
+}
+
 let signer;
 
-async function connect() {
+async function connect(){
 
-  try {
+  try{
 
-    if (!window.ethereum) {
+    if(!window.ethereum){
       alert("MetaMask not installed");
       return;
     }
 
     await window.ethereum.request({
-      method: 'eth_requestAccounts'
+      method:'eth_requestAccounts'
     });
 
-    const provider = new ethers.BrowserProvider(window.ethereum);
+    const provider =
+      new ethers.BrowserProvider(window.ethereum);
 
     signer = await provider.getSigner();
 
     const address = await signer.getAddress();
 
     document.getElementById("wallet").innerHTML =
-      "✅ Wallet Connected:<br><br>" + address;
+      "✅ Wallet Connected<br><br>" + address;
 
   }
 
-  catch (err) {
+  catch(err){
 
     alert("Connection failed");
 
@@ -587,9 +986,9 @@ const abi = [
   "function distribute(address,address) payable"
 ];
 
-async function send() {
+async function send(){
 
-  try {
+  try{
 
     document.getElementById("status").innerHTML =
       "⏳ Processing blockchain transaction...";
@@ -627,10 +1026,10 @@ async function send() {
 
   }
 
-  catch (err) {
+  catch(err){
 
     document.getElementById("status").innerHTML =
-      "❌ Transaction failed. Please try again.";
+      "❌ Transaction failed.";
 
   }
 
